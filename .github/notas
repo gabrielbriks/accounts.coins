@@ -6,7 +6,8 @@
     yarn add axios;
     yarn add mongoose;
     yarn add cors;
-
+	yarn add dotenv;
+	yarn add nodemon -D;
 
 # Notas Tables
 
@@ -60,5 +61,7 @@ Expenses:
 	Conta Luz
 	92,00
  
+### END NOTAS Tables
 
-    
+#Tipos de dados no MongoDb
+	Link: https://data-flair.training/blogs/mongodb-data-types/
