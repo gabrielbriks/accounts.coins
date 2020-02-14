@@ -7,6 +7,58 @@
     yarn add mongoose;
     yarn add cors;
 
--
+
+# Notas Tables
+
+Receitas/Rendas - Incomes
+-----
+	- Id
+	- Name
+	- Value
+	- Category
+	- IdUser
+
+Despesas/Gastos - Expenses
+-----
+	- Id
+	- Nome
+	- Value
+	- Category
+	- Description
+	- IdUser
+
+Usuario/Login
+-----
+	- Id
+	- Name
+	- NameUser
+	- Email
+	- Password
+
+
+#GoShopping / shop do list
+
+ListaCompras
+-----
+	- Id
+	- Item
+		- Nome
+		- Categoria
+	- Quantidade
+	- ValorUnd
+	- TotalItem = (ValorUnd * Quantidade)	
+	- TotalCompra = (SUM(TotalItem).All)
+
+Exemple:
+
+Incomes:
+	Salario
+	700,00
+	Remuneração
+
+Expenses:
+	Conta Luz
+	92,00
+ 
 
     
