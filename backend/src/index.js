@@ -1,8 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const routes = require('./routes');
 
+const routes = require('./routes');
+require('dotenv/config');
 /* Que tal utilizar o 'require-dir' >> import requireDir require 'require-dir' ; Install ! */ 
 
 
@@ -11,7 +12,7 @@ const app = express();
 
 
 
-mongoose.connect('mongodb+srv://master:@master1010@cluster0-itqet.mongodb.net/accountsmap?retryWrites=true&w=majority',{
+mongoose.connect(process.env.BD_CONECTION,{
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
