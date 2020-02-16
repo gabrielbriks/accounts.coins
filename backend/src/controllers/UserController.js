@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 
-const UserSchema = mongoose.model('User'); 
+const UserSchema = require('../models/User'); 
 
 module.exports = {
 
      // Listar : Index
      async index(req, res){
-        return res.json();
+         const users = await UserSchema.find();
+        return res.json(users);
     },
 
     // Buscar : show
@@ -20,5 +21,11 @@ module.exports = {
     // Atualizar : update
      
     // Excluir : destroy
+    async destroy(req, res){
+        const user = await UserSchema.findOneAndRemove(req.query.id);
+        return res.send();
+    }
+    
+    
 
 };
