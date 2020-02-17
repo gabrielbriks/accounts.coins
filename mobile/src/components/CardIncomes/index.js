@@ -7,6 +7,10 @@ export default function CardIncomes(){
     <>
       <View>
       <Card>
+          <CardHeader>
+            <CardTitle>Receitas</CardTitle>           
+          </CardHeader> 
+          <Line />
           <CardContent>
             <Title>Saldo Receitas</Title>
             <Description>R$ 6.723,39</Description>
@@ -57,4 +61,27 @@ const Description = styled.Text`
   margin-top: 3px;
   
 
+`;
+
+const CardHeader = styled.View`
+  height: 48px;
+  width: 100%;
+  
+  align-items: center;
+
+`;
+
+const Line = styled.View`
+  height: 3;
+  background-color: #00DB16;
+  align-self: stretch;
+
+`;
+
+const CardTitle = styled.Text`
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 9px;
+  
 `;

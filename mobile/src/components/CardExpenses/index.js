@@ -7,8 +7,12 @@ export default function CardExpenses(){
     <>
       <View>
       <Card>
+          <CardHeader>
+            <CardTitle>Despesas</CardTitle>           
+          </CardHeader> 
+          <Line />
           <CardContent>
-            <Title>Saldo Despesas</Title>
+            <CardContentTitle>Saldo Despesas</CardContentTitle>
             <Description>R$ 2.987,36</Description>
           </CardContent>
         </Card>
@@ -27,7 +31,7 @@ const Card = styled.View`
     flex: 1;
     background-color: #FFF;
     border-radius: 7px;
-    margin: 0 20px;
+    margin: 25px 20px;
     height: 295px;
     position: absolute;
     left: 0;
@@ -41,7 +45,7 @@ const CardContent = styled.View`
   justify-content: center;
 `;
 
-const Title = styled.Text`
+const CardContentTitle = styled.Text`
   font-size: 14px;
   text-transform: uppercase;
   font-weight: bold;
@@ -57,4 +61,27 @@ const Description = styled.Text`
   margin-top: 3px;
   
 
+`;
+
+const CardHeader = styled.View`
+  height: 48px;
+  width: 100%;
+  
+  align-items: center;
+
+`;
+
+const Line = styled.View`
+  height: 3;
+  background-color: #EF3A3A;
+  align-self: stretch;
+
+`;
+
+const CardTitle = styled.Text`
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 9px;
+  
 `;

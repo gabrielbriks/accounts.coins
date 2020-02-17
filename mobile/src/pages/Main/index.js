@@ -12,9 +12,12 @@ export default function Main(){
     <>
       <View style={ styles.container }>
       <Content>
-        <CardExpense />
+        <CardExpense style={styles.cardExpense}/>
         
-         
+      </Content>
+
+      <Content>
+        <CardIncomes style={styles.cardIncomes} />         
       </Content>
       
       
@@ -30,7 +33,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#4169E1',
     paddingTop: 20,
   },
-
+  cardExpense:{
+    flexDirection: "row",
+  },  
+  cardIncomes:{
+    flexDirection: "row",
+    // marginTop: 400
+  }
 
  });
 
