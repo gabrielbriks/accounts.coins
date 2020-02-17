@@ -1,27 +1,47 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { PanGestureHandler } from "react-native-gesture-handler";
+import { StyleSheet, Text, View, Animated } from 'react-native';
+import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components";
 
 import CardExpense from '../../components/CardExpenses';
 import CardIncomes from  '../../components/CardIncomes';
 
 export default function Main(){
+  const translateY = new Animated.Value(0);
+
+  const animatedEvent = Animated.event(
+    [
+      {
+        nativeEvent: {
+          translationY: translateY,
+        }
+      }
+    ],
+    {
+      useNativeDriver: true,
+    }
+  );
+
   return (
 
     <>
+    {/* <ScrollView style= {{ marginTop: 0, marginHorizontal: 10, position: "relative", backgroundColor: '#999'  }}> */}
       <View style={ styles.container }>
-      <Content>
-        <CardExpense style={styles.cardExpense}/>
+        <MainHeader />
         
-      </Content>
-
-      <Content>
-        <CardIncomes style={styles.cardIncomes} />         
-      </Content>
-      
+          {/* <Text style={{fontSize:50}}>
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+          </Text> */}
+           <CardItem>
+            <CardExpense style={styles.cardExpense}/>        
+          </CardItem>
+          <CardItem>
+            <CardIncomes style={styles.cardIncomes} />         
+          </CardItem>
+        
       
       </View>
+    {/* </ScrollView> */}
 
     </>
   );
@@ -35,67 +55,29 @@ const styles = StyleSheet.create({
   },
   cardExpense:{
     flexDirection: "row",
+   
+    
   },  
   cardIncomes:{
     flexDirection: "row",
-    // marginTop: 400
+
   }
 
  });
 
-// ## Components
 
 
-// const Header = styled.View`
+ // ## Components
 
+  const CardItem = styled.View`
+      flex: 1;
+      max-height: 100%;
+      z-index: 5;
+      flex-direction: column;
+      
+  `;
 
-// `;
-
-const Content = styled.View`
-    flex: 1;
-    max-height: 100%;
-    z-index: 5;
-`;
-
-
-// const CardHeader = styled.View`
-
-
-// `;
-
-// const Card = styled.View`
-//     flex: 1;
-//     background-color: #FFF;
-//     border-radius: 7px;
-//     margin: 0 20px;
-//     height: 295px;
-//     position: absolute;
-//     left: 0;
-//     right: 0;
-//     top: 0;
-
-// `;
-// const CardContent = styled.View`
-//   flex: 1;
-//   padding: 0 30px;
-//   justify-content: center;
-// `;
-
-// const Title = styled.Text`
-//   font-size: 14px;
-//   text-transform: uppercase;
-//   font-weight: bold;
-//   color: #999;
-
-// `;
-
-// const Description = styled.Text`
-//   font-size: 32px;
-//   font-weight: bold;
-//   text-align: center;
-//   color: #EF3A3A;
-//   margin-top: 3px;
-  
-
-// `;
-
+  const MainHeader = styled.View`
+    height: 70px;
+    background: #333;  
+  `;
