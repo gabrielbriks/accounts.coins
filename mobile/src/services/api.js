@@ -1,12 +1,7 @@
-// import React from "react";
-// import { StyleSheet, Image, View, Animated } from "react-native";
+import axios from 'axios';
 
-// export default function Main(){
+const api = axios.create({
+    baseURL:'http://localhost:3001'
+});
 
-//   return (
-
-//     <View />
-
-//   );
-
-// };
+export default api;

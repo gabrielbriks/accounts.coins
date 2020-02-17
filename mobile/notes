@@ -3,3 +3,4 @@
 yarn add react-navigation
 yarn add react-native-gesture-handler
 yarn add styled-components
+yarn add axios
