@@ -5,7 +5,7 @@ import styled from 'styled-components';
 export default function CardExpenses(){
   return (
     <>
-      <View>
+      <Container>
       <Card>
           <CardHeader>
             <CardTitle>Despesas</CardTitle>           
@@ -16,24 +16,23 @@ export default function CardExpenses(){
             <Description>R$ 2.987,36</Description>
           </CardContent>
         </Card>
-      </View>
+      </Container>
     </>
   );
 
 }
 
-// const CardHeader = styled.View`
+const Container = styled.View`
+flex-direction: row;
 
-
-// `;
+`;
 
 const Card = styled.View`
     flex: 1;
     background-color: #FFF;
     border-radius: 7px;
     margin: 25px 20px;
-    height: 295px;
-    position: absolute;
+    height: 295px;    
     left: 0;
     right: 0;
     top: 0;
@@ -72,7 +71,7 @@ const CardHeader = styled.View`
 `;
 
 const Line = styled.View`
-  height: 3;
+  height: 3px;
   background-color: #EF3A3A;
   align-self: stretch;
 

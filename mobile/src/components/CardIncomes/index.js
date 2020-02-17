@@ -5,7 +5,7 @@ import styled from 'styled-components';
 export default function CardIncomes(){
   return (
     <>
-      <View>
+      <Container>
       <Card>
           <CardHeader>
             <CardTitle>Receitas</CardTitle>           
@@ -16,16 +16,16 @@ export default function CardIncomes(){
             <Description>R$ 6.723,39</Description>
           </CardContent>
         </Card>
-      </View>
+      </Container>
     </>
   );
 
 }
 
-// const CardHeader = styled.View`
+const Container = styled.View`
+flex-direction: row;
 
-
-// `;
+`;
 
 const Card = styled.View`
     flex: 1;
@@ -33,7 +33,7 @@ const Card = styled.View`
     border-radius: 7px;
     margin: 0 20px;
     height: 295px;
-    position: absolute;
+   
     left: 0;
     right: 0;
     top: 0;
