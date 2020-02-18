@@ -28,17 +28,10 @@ export default function Main(){
     <>
     {/* <ScrollView style= {{ marginTop: 0, marginHorizontal: 10, position: "relative", backgroundColor: '#999'  }}> */}
       <Container >
-        <MainHeader>
-          <View style={{
-            flex: 1,
-            width: 50,
-            margin: 10,
-            backgroundColor: '#fff',
-            borderRadius: 100
-
-          }}> 
-          <Icon name="account-circle" size={50} />
-          </View>
+        <MainHeader style={{/*backgroundColor: '#333'*/}}>
+          <BackgroundIcon > 
+          <Icon name="account-circle" size={65} />
+          </BackgroundIcon>
         </MainHeader>
         
           <CardExpense style={styles.cardExpense}/>  
@@ -62,17 +55,7 @@ const styles = StyleSheet.create({
   //   backgroundColor: '#4169E1',
   //   paddingTop: 20,
   // },
-  cardExpense:{
-    flexDirection: "row",
-   
-    
-  },  
-  cardIncomes:{
-    flexDirection: "row",
-    
-
-  }
-
+  
  });
 
 
@@ -84,16 +67,15 @@ const styles = StyleSheet.create({
     padding-top: 20px;
   `;
 
-
-  const CardItem = styled.View`
+ const BackgroundIcon = styled.View`
     flex: 1;
-    max-height: 100%;
-    z-index: 5;
-    flex-direction: column;      
-  `;
+    width: 65px;
+    margin: 12px;
+    background-color: #FFF;
+    border-radius: 100px; 
+ `;
 
   const MainHeader = styled.View`
-    height: 70px;
-    background: #333; 
+    height: 90px;     
     align-items: flex-end; 
   `;

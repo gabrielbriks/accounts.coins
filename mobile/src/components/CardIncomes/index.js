@@ -32,8 +32,7 @@ const Card = styled.View`
     background-color: #FFF;
     border-radius: 7px;
     margin: 0 20px;
-    height: 295px;
-   
+    height: 295px;   
     left: 0;
     right: 0;
     top: 0;
@@ -72,7 +71,7 @@ const CardHeader = styled.View`
 `;
 
 const Line = styled.View`
-  height: 3;
+  height: 3px;
   background-color: #00DB16;
   align-self: stretch;
 
