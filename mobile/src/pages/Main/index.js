@@ -26,24 +26,31 @@ export default function Main(){
   return (
 
     <>
-    {/* <ScrollView style= {{ marginTop: 0, marginHorizontal: 10, position: "relative", backgroundColor: '#999'  }}> */}
+    
       <Container >
+       
         <MainHeader style={{/*backgroundColor: '#333'*/}}>
           <BackgroundIcon > 
           <Icon name="account-circle" size={65} />
           </BackgroundIcon>
         </MainHeader>
         
-          <CardExpense style={styles.cardExpense}/>  
-          <CardIncomes style={styles.cardIncomes} />         
-          <Text style={{fontSize: 100, color: '#fff'}}>
-          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-          </Text>
+        <CardExpense style={styles.cardExpense}/>  
+        <CardIncomes style={styles.cardIncomes} /> 
+        
+        <Text style={{fontSize: 100, color: '#fff'}}>
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        </Text>
           
         
       
       </Container>
-    {/* </ScrollView> */}
+      <ContainerBtn>
+        <BtnAdd>
+          <Icon name="add-circle" size={70} />
+        </BtnAdd>    
+      </ContainerBtn>   
+    
 
     </>
   );
@@ -54,12 +61,31 @@ const styles = StyleSheet.create({
   //   flex: 1,
   //   backgroundColor: '#4169E1',
   //   paddingTop: 20,
+    
   // },
   
  });
 
 
  // ## Components
+
+ const ContainerBtn = styled.View`
+    flex: 1;   
+    margin-left: 275px;
+    margin-top: 392px;
+    position: absolute;
+  `;
+
+ const BtnAdd = styled.View`
+    flex: 1;
+    background-color: #FFF;
+    width: 70px;  
+    height: 70px;    
+    align-self: flex-end;
+    margin-top: 0px; 
+    border-radius: 100px;s
+  `;
+
 
  const Container = styled.ScrollView`
     flex: 1;

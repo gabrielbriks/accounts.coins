@@ -23,19 +23,19 @@ export default function CardExpenses(){
 }
 
 const Container = styled.View`
-flex-direction: row;
+  flex-direction: row;
 
 `;
 
 const Card = styled.View`
-    flex: 1;
-    background-color: #FFF;
-    border-radius: 7px;
-    margin: 25px 20px;
-    height: 295px;    
-    left: 0;
-    right: 0;
-    top: 0;
+  flex: 1;
+  background-color: #FFF;
+  border-radius: 7px;
+  margin: 25px 20px;
+  height: 295px;    
+  left: 0;
+  right: 0;
+  top: 0;
 
 `;
 const CardContent = styled.View`
@@ -64,8 +64,7 @@ const Description = styled.Text`
 
 const CardHeader = styled.View`
   height: 48px;
-  width: 100%;
-  
+  width: 100%;  
   align-items: center;
 
 `;
