@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 export default function Login(){
     return (
         <Container >
-        <Text style={{fontSize: 35, color: '#000'}}>
+        <Text style={{fontSize: 35, color: '#fff'}}>
         Page Login!!
         </Text>
         </Container>
@@ -18,7 +18,7 @@ export default function Login(){
 
 const Container = styled.View`
     flex:1;
-    background -color: #B805;
+    background-color: #4169E1;
     align-items: center;
     text-align: center;
 

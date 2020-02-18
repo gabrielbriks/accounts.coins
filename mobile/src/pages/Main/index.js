@@ -8,20 +8,20 @@ import CardExpense from '../../components/CardExpenses';
 import CardIncomes from  '../../components/CardIncomes';
 
 export default function Main(){
-  const translateY = new Animated.Value(0);
+  // const translateY = new Animated.Value(0);
 
-  const animatedEvent = Animated.event(
-    [
-      {
-        nativeEvent: {
-          translationY: translateY,
-        }
-      }
-    ],
-    {
-      useNativeDriver: true,
-    }
-  );
+  // const animatedEvent = Animated.event(
+  //   [
+  //     {
+  //       nativeEvent: {
+  //         translationY: translateY,
+  //       }
+  //     }
+  //   ],
+  //   {
+  //     useNativeDriver: true,
+  //   }
+  // );
 
   return (
 
@@ -31,7 +31,7 @@ export default function Main(){
        
         <MainHeader style={{/*backgroundColor: '#333'*/}}>
           <BackgroundIcon > 
-          <Icon name="account-circle" size={65} />
+            <Icon name="account-circle" size={65} />
           </BackgroundIcon>
         </MainHeader>
         
@@ -39,7 +39,7 @@ export default function Main(){
         <CardIncomes style={styles.cardIncomes} /> 
         
         <Text style={{fontSize: 100, color: '#fff'}}>
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        Exemple ScrollView: Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
         </Text>
           
         
