@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Animated } from 'react-native';
+import { StyleSheet, Text, View, Animated, Button } from 'react-native';
 import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components";
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import CardExpense from '../../components/CardExpenses';
 import CardIncomes from  '../../components/CardIncomes';
 
-export default function Main(){
+export default function Main({ navigation }){
  
   return (
 
@@ -33,7 +33,7 @@ export default function Main(){
       </Container>
       <ContainerBtn>
         <BtnAdd>
-          <Icon name="add-circle" size={70} />
+          <Icon name="add-circle" size={70}  onPress={() => navigation.navigate('Modal')}/>
         </BtnAdd>    
       </ContainerBtn>   
     
@@ -41,6 +41,26 @@ export default function Main(){
     </>
   );
 }
+
+
+export function Modal({ navigation }){
+  return (
+    <View style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'transparent', 
+        opacity: 0.2,
+        position:"absolute",
+          
+      }}>
+      <Text style={{ fontSize: 30 }}>This is a modal!</Text>
+      <Button onPress={() => navigation.navigate('Main')} title="Dismiss" />
+    </View>
+
+  );
+}
+
 
 const styles = StyleSheet.create({
   // container: {
@@ -51,6 +71,10 @@ const styles = StyleSheet.create({
   // },
   
  });
+
+
+
+//#region Components
 
 
  // ## Components
@@ -91,3 +115,6 @@ const styles = StyleSheet.create({
     height: 90px;     
     align-items: flex-end; 
   `;
+
+  //#endregion
+
