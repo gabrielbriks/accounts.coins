@@ -6,3 +6,10 @@ yarn add styled-components
 yarn add axios
 yarn add react-native-vector-icons
 expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+
+
+#Esclarecimentos:
+
+    AsyncStorage: Para entender a definição do mesmo basta acessar o seguinte link >> https://facebook.github.io/react-native/docs/asyncstorage
+
+    

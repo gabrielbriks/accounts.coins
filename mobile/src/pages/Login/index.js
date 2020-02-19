@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, Animated, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Animated, TextInput, TouchableOpacity, AsyncStorage } from 'react-native';
 import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components";
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -7,6 +7,16 @@ import { NavigationSwitchScreenProps } from 'react-navigation';
 
 /* A propiedade navigation, vem de uma forma automatica para todas as pages da nossa aplication */
 export default function Login({ navigation }){
+
+    const [login, setLogin] = useState('');
+    const [password, setPassword] = useState('');
+    
+    async function singInPress(){
+        console.log(login);
+        console.log(password);
+        navigation.navigate('Main');
+    }
+
     return (
         <Container>
             <ContainerSingIn>
@@ -15,18 +25,22 @@ export default function Login({ navigation }){
                     placeholderTextColor="#000"
                     autoCapitalize="none"
                     autoCorrect={false}
+                    value = {login}
+                    onChangeText = {setLogin}
                 />
                 <TextInput style={styles.input}
-                    placeholder="Senha"
+                    placeholder="Senha"                    
                     placeholderTextColor="#000"
                     autoCapitalize="none"
                     autoCorrect={false}
                     secureTextEntry
+                    onChangeText={setPassword}
+                    value ={password}
                 />
-                <TouchableOpacity title="Entrar" style={styles.button}
-                onPress={ ()=>{
-                    navigation.navigate('Login');
-                }}
+                <TouchableOpacity 
+                    title="Entrar"
+                    style={styles.button}
+                    onPress={ singInPress}
                 >
                     <ButtonText>Entrar</ButtonText>
                 </TouchableOpacity>

@@ -8,21 +8,7 @@ import CardExpense from '../../components/CardExpenses';
 import CardIncomes from  '../../components/CardIncomes';
 
 export default function Main(){
-  // const translateY = new Animated.Value(0);
-
-  // const animatedEvent = Animated.event(
-  //   [
-  //     {
-  //       nativeEvent: {
-  //         translationY: translateY,
-  //       }
-  //     }
-  //   ],
-  //   {
-  //     useNativeDriver: true,
-  //   }
-  // );
-
+ 
   return (
 
     <>
