@@ -14,6 +14,13 @@ module.exports ={
 
         return res.json(userLogon);
 
+    },
+
+    async signout(req, res){
+        //Delete session 
+        //Redireciona user para tela login
+        const destroySessions = await {"DESTROY": "SESSION DESTROYED"};
+        return res.json(destroySessions);
     }
 
 
