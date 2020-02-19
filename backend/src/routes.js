@@ -4,7 +4,7 @@ const routes = express.Router();
 const UserController = require('./controllers/UserController');
 const DespesasController = require('./controllers/DespesasController');
 const ReceitasController = require('./controllers/ReceitasController');
-
+const SigninController = require('./controllers/SigninController');
 
 
 // ## Expenses
@@ -38,6 +38,7 @@ routes.get('/users', UserController.index);
 routes.post('/user', UserController.store);
 //-----------
 
+routes.post('/signin', SigninController.signin);
 
 
 module.exports = routes;

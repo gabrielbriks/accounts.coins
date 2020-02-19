@@ -16,15 +16,21 @@ export default function Login({ navigation }){
     async function signInPress(){
         console.log(login);
         console.log(password);
-
+       
         const response = await api.post('/signin', {
             params:{
                 login,
                 password
             }
         });
-
+        console.log(response);
+        // var response = null;
+        if(!response && response == null){
+            let error = 'Opss!! Login or Password not exist! Please, try again ...';
+            return alert(error);            
+        }
         navigation.navigate('Main');
+
     }
 
     return (
