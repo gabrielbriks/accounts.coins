@@ -7,9 +7,8 @@ const Routes = createAppContainer(createSwitchNavigator({
   Main,
   Modal,
 },{
-  navigationOptions:{
-    
-  }
+  mode: 'modal',
+  modal:{ screen: 'Modal' }
 }));
 
 export default Routes;

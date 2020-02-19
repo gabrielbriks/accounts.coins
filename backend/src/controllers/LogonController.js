@@ -5,10 +5,12 @@ const UserSchema = require('../models/User');
 module.exports ={
 
     async signin(req, res){
-        const { login, password} = req.body;
-        let userLogon = UserSchema.findOne({ login, password });
+        //console.log(req.body);
+        const { login, password } = req.body;
 
-        if(!login){
+        let userLogon = await UserSchema.findOne({ login, password });
+        
+        if(!userLogon){
             userLogon = null;
         }
 
