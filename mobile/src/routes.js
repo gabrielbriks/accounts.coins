@@ -3,25 +3,26 @@ import { createStackNavigator } from "react-navigation-stack";
 
 import Main from "./pages/Main";
 import Login from './pages/Login';
+import RegisterExpenses from './pages/RegisterExpenses';
 
 const Routes = createAppContainer(createStackNavigator({ 
-  Login,  
-  Main,
-  // ModalScreen:{
-  //   screen: ModalScreen,
-   
-  // }
-},{headerMode: "none"}));
+  Login:{
+    screen: Login,
+    navigationOptions: {
+      headerShown: false,
+    }
+  },      
+  Main:{
+    screen: Main,
+    navigationOptions: {
+      headerShown: false,/* Ocultando o header de paginas especificas*/
+    },
+  },
+  RegisterExpenses:{
+    screen: RegisterExpenses,
+  },
 
-//  const ModalScreen = createStackNavigator({
-//     MainModal: {screen: Modal}
-//   }, {
-//     mode: 'modal',
-//       headerMode: 'none',
-//       cardStyle: {
-//         backgroundColor: 'transparent',
-//         shadowColor: 'transparent'
-//       },
-//   });
+},{}));
+
 
 export default Routes;

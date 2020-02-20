@@ -48,11 +48,25 @@ export default function Main({ navigation }){
            
             <ContainerBtnModalOptions>
               <BackgroundBtnAddModal>
-                <Icon name="add-circle" size={52} color={'#010'} onPress={() => setModalIsVisible(false)}/>
-                <Icon name="add-circle" size={52} color={'#010'} onPress={() => setModalIsVisible(false)}/>
+                <Icon 
+                  name="add-circle" 
+                  size={52} 
+                  color={'#000'} 
+                  onPress={ () =>
+                  { 
+                    navigation.navigate('RegisterExpenses'); 
+                    setModalIsVisible(false)
+                  }}
+                />
+                <Icon
+                  name="add-circle" 
+                  size={52} 
+                  color={'#000'} 
+                  onPress={() => setModalIsVisible(false)}
+                 />
               </BackgroundBtnAddModal>    
             </ContainerBtnModalOptions> 
-                     
+
           </View>
         </Modal>
       
