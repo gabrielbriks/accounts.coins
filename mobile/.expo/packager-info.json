@@ -1,9 +1,9 @@
 {
   "expoServerNgrokUrl": "https://24-34h.gabriel-morais.mobile.exp.direct",
   "packagerNgrokUrl": "https://packager.24-34h.gabriel-morais.mobile.exp.direct",
-  "ngrokPid": 28372,
+  "ngrokPid": 22968,
   "packagerPort": 19001,
-  "packagerPid": 1960,
+  "packagerPid": 2996,
   "devToolsPort": 19002,
   "expoServerPort": 19000
 }

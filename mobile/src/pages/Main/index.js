@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Animated, Button} from 'react-native';
+import { StyleSheet, Text, View, Animated, Button, TextComponent} from 'react-native';
 import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components";
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -33,16 +33,26 @@ export default function Main({ navigation }){
           
         <Modal isVisible={modalIsVisible} >
           <View style={styles.viewModal}>
-            {/* <Text style={{ fontSize: 20, color:'#000' }}>This is a modal!</Text> */}
-            <Button onPress={() => setModalIsVisible(false)} title="Voltar" color='#333' style={styles.buttonModal} />   
+          
             <ContainerBtnModal>
               <BackgroundBtnAddModal>
-                <Icon name="cancel" size={52} color={'#010'} onPress={() => setModalIsVisible(false)}/>
-                <Icon name="cancel" size={52} color={'#010'} onPress={() => setModalIsVisible(false)}/>
-                
-                
+                <Icon name="cancel" size={52} color={'#010'} onPress={() => setModalIsVisible(false)}/>                
               </BackgroundBtnAddModal>    
-            </ContainerBtnModal>         
+            </ContainerBtnModal>
+            
+            <View>
+             <TextOptionExpense>Adicionar despesa</TextOptionExpense>
+             <TextOptionIncome>Adicionar Receita</TextOptionIncome>  
+            </View>
+                       
+           
+            <ContainerBtnModalOptions>
+              <BackgroundBtnAddModal>
+                <Icon name="add-circle" size={52} color={'#010'} onPress={() => setModalIsVisible(false)}/>
+                <Icon name="add-circle" size={52} color={'#010'} onPress={() => setModalIsVisible(false)}/>
+              </BackgroundBtnAddModal>    
+            </ContainerBtnModalOptions> 
+                     
           </View>
         </Modal>
       
@@ -63,8 +73,7 @@ export default function Main({ navigation }){
 const styles = StyleSheet.create({
   viewModal: {
     flex:1,
-    backgroundColor: '#fff',
-    
+    backgroundColor: '#fff',    
     opacity: 0.8
     
   },
@@ -138,6 +147,33 @@ const styles = StyleSheet.create({
     align-self: flex-end;
     margin-top: 0px;
     border-radius: 100px;
+    flex-direction: column;
+  `;
+
+  const ContainerBtnModalOptions = styled.View`
+    flex: 1;   
+    margin-left: 270px;
+    margin-top: 420px;
+    position: absolute;
+    align-items: center;
+    align-content: center;
+  `;
+
+  const TextOptionExpense = styled.Text`
+    font-size: 20px;
+    color: #000; 
+    font-weight: bold;
+    margin-top: 430px;
+    margin-left: 100px;    
+  `;
+
+  const TextOptionIncome = styled.Text`
+    font-size: 20px;
+    color: #000;
+    font-weight: bold;
+    margin-top: 485px;
+    margin-left: 110px;
+    position: absolute;
   `;
 
   //#endregion
