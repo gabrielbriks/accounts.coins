@@ -47,14 +47,18 @@ export function Modal({ navigation }){
   return (
     <View style={{
         flex: 1,
+        // maxWidth: 450,
+        // maxHeight: 500,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'transparent', 
-        opacity: 0.2,
-        position:"absolute",
-          
+       // backgroundColor: 'transparent', 
+        marginTop: 150,
+        
+        // alignContent: "center",
+        alignSelf: "center"
+
       }}>
-      <Text style={{ fontSize: 30 }}>This is a modal!</Text>
+      <Text style={{ fontSize: 20, color:'#000' }}>This is a modal!</Text>
       <Button onPress={() => navigation.navigate('Main')} title="Dismiss" />
     </View>
 

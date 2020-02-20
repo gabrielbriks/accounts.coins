@@ -23,7 +23,7 @@ export default function Login({ navigation }){
                 password
             }
         });
-        console.log(response);
+        console.log(response.status);
         // var response = null;
         if(!response && response == null){
             let error = 'Opss!! Login or Password not exist! Please, try again ...';
