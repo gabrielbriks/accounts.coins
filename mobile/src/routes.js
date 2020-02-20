@@ -1,20 +1,18 @@
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
-import 'react-native-gesture-handler';
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator } from "react-navigation-stack";
 
-
-import Main, { Modal } from "./pages/Main";
+import Main, { ModalScreen } from "./pages/Main";
 import Login from './pages/Login';
 
 const Routes = createAppContainer(createStackNavigator({ 
-  Login:{
-    screen: Login,
-    navigationOptions:{
-      headerMode: 'none',
-    }
-  },
+  Login,
+  
   Main,
-}));
+  ModalScreen:{
+    screen: ModalScreen,
+   
+  }
+},{headerMode: "none"}));
 
 //  const ModalScreen = createStackNavigator({
 //     MainModal: {screen: Modal}

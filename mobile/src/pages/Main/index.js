@@ -1,14 +1,17 @@
-import React from 'react';
-import { StyleSheet, Text, View, Animated, Button } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Animated, Button} from 'react-native';
 import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components";
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import Modal from 'react-native-modal';
 
 import CardExpense from '../../components/CardExpenses';
 import CardIncomes from  '../../components/CardIncomes';
 
 export default function Main({ navigation }){
- 
+  
+  const [modalIsVisible, setModalIsVisible] = useState(false);  
+
   return (
 
     <>
@@ -16,65 +19,60 @@ export default function Main({ navigation }){
       <Container >
        
         <MainHeader style={{/*backgroundColor: '#333'*/}}>
-          <BackgroundIcon > 
-            <Icon name="account-circle" size={65} />
-          </BackgroundIcon>
+          <BackgroundAvatarIcon > 
+            <Icon name="account-circle" size={65} color={'#343434'} />
+          </BackgroundAvatarIcon>
         </MainHeader>
         
         <CardExpense style={styles.cardExpense}/>  
         <CardIncomes style={styles.cardIncomes} /> 
         
         <Text style={{fontSize: 100, color: '#fff'}}>
-        Exemple ScrollView: Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+          Exemple ScrollView: Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
         </Text>
           
-        
+        <Modal isVisible={modalIsVisible} >
+          <View style={styles.viewModal}>
+            {/* <Text style={{ fontSize: 20, color:'#000' }}>This is a modal!</Text> */}
+            <Button onPress={() => setModalIsVisible(false)} title="Voltar" color='#333' style={styles.buttonModal} />   
+            <ContainerBtnModal>
+              <BackgroundBtnAddModal>
+                <Icon name="cancel" size={52} color={'#010'} onPress={() => setModalIsVisible(false)}/>
+                <Icon name="cancel" size={52} color={'#010'} onPress={() => setModalIsVisible(false)}/>
+                
+                
+              </BackgroundBtnAddModal>    
+            </ContainerBtnModal>         
+          </View>
+        </Modal>
       
       </Container>
       <ContainerBtn>
-        <BtnAdd>
-          <Icon name="add-circle" size={70}  onPress={() => navigation.navigate('Modal')}/>
-        </BtnAdd>    
+        <BackgroundBtnAdd>
+          <Icon name="add-circle" size={52} color={'#343434'} onPress={() => setModalIsVisible(true)}/>
+        </BackgroundBtnAdd>    
       </ContainerBtn>   
+
+      
     
 
     </>
   );
 }
 
-
-export function Modal({ navigation }){
-  return (
-    <View style={{
-        flex: 1,
-        // maxWidth: 450,
-        // maxHeight: 500,
-        alignItems: 'center',
-        justifyContent: 'center',
-       // backgroundColor: 'transparent', 
-        marginTop: 150,
-        
-        // alignContent: "center",
-        alignSelf: "center"
-
-      }}>
-      <Text style={{ fontSize: 20, color:'#000' }}>This is a modal!</Text>
-      <Button onPress={() => navigation.navigate('Main')} title="Dismiss" />
-    </View>
-
-  );
-}
-
-
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: '#4169E1',
-  //   paddingTop: 20,
+  viewModal: {
+    flex:1,
+    backgroundColor: '#fff',
     
-  // },
+    opacity: 0.8
+    
+  },
+  buttonModal:{
+    borderRadius: 100,
+  },
   
- });
+});
 
 
 
@@ -85,19 +83,21 @@ const styles = StyleSheet.create({
 
  const ContainerBtn = styled.View`
     flex: 1;   
-    margin-left: 275px;
-    margin-top: 392px;
+    margin-left: 300px;
+    margin-top: 580px;
     position: absolute;
+    align-items: center;
+    align-content: center;
   `;
 
- const BtnAdd = styled.View`
+ const BackgroundBtnAdd = styled.View`
     flex: 1;
-    background-color: #FFF;
-    width: 70px;  
-    height: 70px;    
+    background-color: rgba(255,255,255,0.8);
+    width: 52px;  
+    height: 52px;    
     align-self: flex-end;
     margin-top: 0px; 
-    border-radius: 100px;s
+    border-radius: 100px;
   `;
 
 
@@ -107,17 +107,37 @@ const styles = StyleSheet.create({
     padding-top: 20px;
   `;
 
- const BackgroundIcon = styled.View`
+ const BackgroundAvatarIcon = styled.View`
     flex: 1;
     width: 65px;
     margin: 12px;
     background-color: #FFF;
     border-radius: 100px; 
+    align-items: center;
  `;
 
   const MainHeader = styled.View`
-    height: 90px;     
-    align-items: flex-end; 
+    height: 90px;
+    align-items: flex-end;
+  `;
+
+  const ContainerBtnModal = styled.View`
+    flex: 1;   
+    margin-left: 280px;
+    margin-top: 540px;
+    position: absolute;
+    align-items: center;
+    align-content: center;
+  `;
+
+  const BackgroundBtnAddModal = styled.View`
+    flex: 1;
+    background-color: rgba(255,255,255,0.8);
+    width: 52px;
+    height: 52px;
+    align-self: flex-end;
+    margin-top: 0px;
+    border-radius: 100px;
   `;
 
   //#endregion
