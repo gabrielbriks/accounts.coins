@@ -4,6 +4,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import Main from "./pages/Main";
 import Login from './pages/Login';
 import RegisterExpenses from './pages/RegisterExpenses';
+import RegisterIncomes from "./pages/RegisterIncomes";
 
 const Routes = createAppContainer(createStackNavigator({ 
   Login:{
@@ -23,6 +24,13 @@ const Routes = createAppContainer(createStackNavigator({
     navigationOptions: {
       headerTitleAlign: "center",
       headerTitle: "Nova Despesa" /* Definindo title do header customizado*/
+    },
+  },
+  RegisterIncomes:{
+    screen: RegisterIncomes,
+    navigationOptions:{
+      headerTitleAlign: "center",
+      headerTitle: "Nova Receita",
     },
   },
 

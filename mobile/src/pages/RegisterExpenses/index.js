@@ -8,6 +8,11 @@ import styled from "styled-components";
 export default function RegisterExpenses() {
 
   const [categoryChecked, setCategoryChecked] = useState(false);
+  // const [categoryChecked, setCategoryChecked] = useState(false);
+  // const [categoryChecked, setCategoryChecked] = useState(false);
+  // const [categoryChecked, setCategoryChecked] = useState(false);
+  // const [categoryChecked, setCategoryChecked] = useState(false);
+  
 
   return (
     <ScrollView>

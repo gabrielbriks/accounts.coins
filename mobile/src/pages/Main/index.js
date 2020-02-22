@@ -46,7 +46,7 @@ export default function Main({ navigation }){
             </View>
                        
            
-            <ContainerBtnModalOptions>
+            <ContainerBtnModalOptionsExpenses>
               <BackgroundBtnAddModal>
                 <Icon 
                   name="add-circle" 
@@ -55,17 +55,25 @@ export default function Main({ navigation }){
                   onPress={ () =>
                   { 
                     navigation.navigate('RegisterExpenses'); 
-                    setModalIsVisible(false)
+                    setModalIsVisible(false);
                   }}
                 />
+              </BackgroundBtnAddModal>    
+            </ContainerBtnModalOptionsExpenses> 
+
+            <ContainerBtnModalIncomes>
+              <BackgroundBtnAddModal>
                 <Icon
                   name="add-circle" 
                   size={52} 
                   color={'#000'} 
-                  onPress={() => setModalIsVisible(false)}
+                  onPress={() => {
+                    navigation.navigate('RegisterIncomes'); 
+                    setModalIsVisible(false);
+                  }}
                  />
               </BackgroundBtnAddModal>    
-            </ContainerBtnModalOptions> 
+            </ContainerBtnModalIncomes> 
 
           </View>
         </Modal>
@@ -164,7 +172,7 @@ const styles = StyleSheet.create({
     flex-direction: column;
   `;
 
-  const ContainerBtnModalOptions = styled.View`
+  const ContainerBtnModalOptionsExpenses = styled.View`
     flex: 1;   
     margin-left: 270px;
     margin-top: 420px;
@@ -172,6 +180,16 @@ const styles = StyleSheet.create({
     align-items: center;
     align-content: center;
   `;
+
+  const ContainerBtnModalIncomes = styled.View`
+    flex: 1;   
+    margin-left: 270px;
+    margin-top: 470px;
+    position: absolute;
+    align-items: center;
+    align-content: center;
+  `;
+
 
   const TextOptionExpense = styled.Text`
     font-size: 20px;
