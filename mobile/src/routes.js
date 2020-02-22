@@ -20,6 +20,10 @@ const Routes = createAppContainer(createStackNavigator({
   },
   RegisterExpenses:{
     screen: RegisterExpenses,
+    navigationOptions: {
+      headerTitleAlign: "center",
+      headerTitle: "Nova Despesa" /* Definindo title do header customizado*/
+    },
   },
 
 },{}));

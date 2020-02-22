@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, TextInput, Text } from 'react-native';
+import { CheckBox } from 'react-native-elements';
 
 // import { Container } from './styles';
 

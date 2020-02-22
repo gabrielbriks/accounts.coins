@@ -8,6 +8,16 @@ yarn add react-native-vector-icons
 expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
 yarn add react-navigation-stack
 
+- Using library react native elements 
+    - Essa lib possui uma dependencia chamada "react-native-vector-icons"
+    Link: https://react-native-elements.github.io/react-native-elements/docs/checkbox.html
+    - Install:
+        Comand: yarn add react-native-vector-icons
+        - Caso nenessário realize o link: react-native link react-native-vector-icons 
+
+
+
+
 #Esclarecimentos:
 
     AsyncStorage: Para entender a definição do mesmo basta acessar o seguinte link >> https://facebook.github.io/react-native/docs/asyncstorage
