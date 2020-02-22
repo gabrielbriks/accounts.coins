@@ -5,7 +5,9 @@ import styled from "styled-components";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { NavigationSwitchScreenProps, NavigationStackOptions, createStackNavigator } from 'react-navigation-stack';
 
+
 import api from "../../services/api";
+import { Container, ContainerSignIn, Button, ButtonText  } from "./styles";
 
 /* A propiedade navigation, vem de uma forma automatica para todas as pages da nossa aplication */
 export default function Login({ navigation }){
@@ -51,7 +53,6 @@ export default function Login({ navigation }){
                     autoCorrect={false}
                     value = {login}
                     onChangeText = {setLogin}
-                    autoFocus={true}
                     required={true}
                 />
                 <TextInput style={styles.input}
@@ -101,29 +102,5 @@ const styles = StyleSheet.create({
     }
 })
 
-const Container = styled.View`
-    flex:1;
-    background-color: #4169E1;
-    align-items: center;
-    text-align: center;
-`;
 
-const ContainerSignIn = styled.View`
-    flex:1;
-    margin-top: 270px;
-    align-self: center;
-`;
 
-const Button = styled.Button`
-    background-color: #333;
-    margin-top: 50px;
-`;
-
-const ButtonText = styled.Text`
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    margin-top: 7px;
-    text-align: center;    
-    justify-content:center;
-`;
