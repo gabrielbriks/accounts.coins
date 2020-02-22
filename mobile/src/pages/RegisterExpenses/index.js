@@ -20,7 +20,7 @@ export default function RegisterExpenses() {
           <Text style={styles.text}> Nome dessa Despesa </Text>
           <TextInput 
             style = {styles.inputs} 
-            placeholder = "Ex: SALÁRIO"
+            placeholder = "Ex: CONTA LUZ"
             placeholderTextColor = "#acacac"
             autoCapitalize = "characters"
             autoCorrect = {false}
