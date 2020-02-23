@@ -25,4 +25,11 @@ yarn add react-navigation-stack
 
     AsyncStorage: Para entender a definição do mesmo basta acessar o seguinte link >> https://facebook.github.io/react-native/docs/asyncstorage
 
+
+#Dicas:
+
+-Buscar Maior Variedades de Icons
+    - Neste link, e possivel buscar icons em todas as lib do vector-icons
+        Link: https://oblador.github.io/react-native-vector-icons/
+
     
