@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Animated, Button, TextComponent} from 'react-native';
+import { StyleSheet, Text, View, Animated, TouchableOpacity} from 'react-native';
 import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components";
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -17,6 +17,14 @@ export default function Main({ navigation }){
   
   const [modalIsVisible, setModalIsVisible] = useState(false);  
 
+  async function showExpenses (params) {
+    navigation.navigate('Expenses');
+  }
+
+  async function showIncomes (params) {
+    navigation.navigate('Incomes');
+  }
+
   return (
 
     <>
@@ -29,9 +37,14 @@ export default function Main({ navigation }){
           </BackgroundAvatarIcon>
         </MainHeader>
         
-        <CardExpense />  
-        <CardIncomes /> 
+        <TouchableOpacity onPress={ showExpenses } >
+          <CardExpense />  
+        </TouchableOpacity>
         
+        <TouchableOpacity onPress={ showIncomes }>
+          <CardIncomes /> 
+        </TouchableOpacity>
+
         <Text style={{fontSize: 72, color: '#fff'}}>
           Exemple ScrollView ... 
         </Text>

@@ -5,6 +5,9 @@ import Main from "./pages/Main";
 import Login from './pages/Login';
 import RegisterExpenses from './pages/RegisterExpenses';
 import RegisterIncomes from "./pages/RegisterIncomes";
+import Expenses from './pages/Expenses';
+import Incomes from './pages/Incomes';
+
 
 const Routes = createAppContainer(createStackNavigator({ 
   Login:{
@@ -32,6 +35,20 @@ const Routes = createAppContainer(createStackNavigator({
       headerTitleAlign: "center",
       headerTitle: "Nova Receita",
     },
+  },
+  Expenses:{
+    screen: Expenses,
+    navigationOptions:{
+      headerTitleAlign: "center",
+      headerTitle: "Despesas",
+    }
+  },
+  Incomes:{
+    screen: Incomes,
+    navigationOptions:{
+      headerTitleAlign: "center",
+      headerTitle: "Receitas",
+    }
   },
 
 },{}));
