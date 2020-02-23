@@ -36,9 +36,11 @@ export default function Main({ navigation }){
       <Container >
        
         <MainHeader style={{/*backgroundColor: '#333'*/}}>
-          <BackgroundAvatarIcon > 
-            <Icon name="account-circle" size={65} color={'#343434'} />
-          </BackgroundAvatarIcon>
+          <TouchableOpacity>
+            <BackgroundAvatarIcon > 
+              <Icon name="account-circle" size={65} color={'#343434'} />
+            </BackgroundAvatarIcon>
+          </TouchableOpacity>
         </MainHeader>
         
         <TouchableOpacity onPress={ showExpenses } >

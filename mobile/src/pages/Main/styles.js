@@ -14,7 +14,7 @@ export const ContainerBtn = styled.View`
 
 export const BackgroundBtnAdd = styled.View`
   flex: 1;
-  background-color: rgba(255,255,255,0.8);
+  background-color: transparent;
   width: 52px;  
   height: 52px;    
   align-self: flex-end;
