@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { CheckBox } from 'react-native-elements';
+import {TextInputMask}  from "react-native-masked-text";
 import styled from "styled-components";
+
 
 // import { Container } from './styles';
 
 export default function RegisterIncomes() {
 
   const [categoryChecked, setCategoryChecked] = useState(false);
-  // const [categoryChecked, setCategoryChecked] = useState(false);
+  const [money, setMoney] = useState('');
   // const [categoryChecked, setCategoryChecked] = useState(false);
   // const [categoryChecked, setCategoryChecked] = useState(false);
   // const [categoryChecked, setCategoryChecked] = useState(false);
@@ -28,15 +30,16 @@ export default function RegisterIncomes() {
             /* onChangeText = {setNameExpenses} */
           />
           <Text style={styles.text}> Valor dessa Receita </Text>
-          <TextInput 
+          <TextInputMask 
+            type={'money'}
             style = {styles.inputs} 
             placeholder = "Ex: 723,90"
             placeholderTextColor = "#acacac"
-            autoCapitalize = "characters"
-            autoCorrect = {false}
+             autoCorrect = {false}
             keyboardType= "numeric"
-            /* value = {nameExpenses} */
-            /* onChangeText = {setNameExpenses} */
+            value={money}
+            onChangeText={text => {setMoney(text)}}
+            
           />
 
           <View style={styles.viewCategory}>
@@ -131,7 +134,6 @@ const styles = StyleSheet.create({
     width: 310,
     fontSize: 15,
     fontWeight: "bold",
-    lineHeight: 0,
     justifyContent: "center",
     alignItems: "stretch",
     // borderBottomStartRadius: 100,

@@ -15,8 +15,11 @@ yarn add react-navigation-stack
         Comand: yarn add react-native-vector-icons
         - Caso nenessário realize o link: react-native link react-native-vector-icons 
 
-
-
+- Using library react-native-masked-text for mask in inputs
+    Link : https://github.com/benhurott/react-native-masked-text
+    - Install:
+        Comand: yarn add react-native-masked-text 
+    
 
 #Esclarecimentos:
 
