@@ -3,10 +3,14 @@ import { StyleSheet, Text, View, Animated, TouchableOpacity} from 'react-native'
 import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components";
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import Modal from 'react-native-modal';
+import { Button } from 'react-native-elements';
 
 import CardExpense from '../../components/CardExpenses';
 import CardIncomes from  '../../components/CardIncomes';
+import ButtonAdd from '../../components/Elements/ButtonAdd'
+
 import {  
   ContainerBtn,BackgroundBtnAdd,Container,BackgroundAvatarIcon, MainHeader, ContainerBtnModal,
   BackgroundBtnAddModal, ContainerBtnModalOptionsExpenses, ContainerBtnModalIncomes, TextOptionExpense,
@@ -49,12 +53,16 @@ export default function Main({ navigation }){
           Exemple ScrollView ... 
         </Text>
           
-        <Modal isVisible={modalIsVisible} >
+        <Modal isVisible={modalIsVisible}>
           <View style={styles.viewModal}>
           
             <ContainerBtnModal>
               <BackgroundBtnAddModal>
-                <Icon name="cancel" size={52} color={'#010'} onPress={() => setModalIsVisible(false)}/>                
+              <Button 
+                icon={<Ionicons name="ios-close" size={30} color="white"/>}
+                buttonStyle={{borderRadius: 100, backgroundColor: "#000"}}
+                onPress={() => setModalIsVisible(false)}
+              />       
               </BackgroundBtnAddModal>    
             </ContainerBtnModal>
             
@@ -66,30 +74,21 @@ export default function Main({ navigation }){
            
             <ContainerBtnModalOptionsExpenses>
               <BackgroundBtnAddModal>
-                <Icon 
-                  name="add-circle" 
-                  size={52} 
-                  color={'#000'} 
-                  onPress={ () =>
-                  { 
-                    navigation.navigate('RegisterExpenses'); 
-                    setModalIsVisible(false);
-                  }}
-                />
+                <Button 
+                  icon={<Ionicons name="ios-add" size={30} color="white"/>}
+                  buttonStyle={{borderRadius: 100, backgroundColor: "#000"}}
+                  onPress={() =>{ navigation.navigate('RegisterExpenses'); setModalIsVisible(false)}}
+                />       
               </BackgroundBtnAddModal>    
             </ContainerBtnModalOptionsExpenses> 
 
             <ContainerBtnModalIncomes>
               <BackgroundBtnAddModal>
-                <Icon
-                  name="add-circle" 
-                  size={52} 
-                  color={'#000'} 
-                  onPress={() => {
-                    navigation.navigate('RegisterIncomes'); 
-                    setModalIsVisible(false);
-                  }}
-                 />
+                <Button 
+                  icon={<Ionicons name="ios-add" size={30} color="white"/>}
+                  buttonStyle={{borderRadius: 100, backgroundColor: "#000"}}
+                  onPress={() =>{ navigation.navigate('RegisterIncomes'); setModalIsVisible(false)}}
+                />        
               </BackgroundBtnAddModal>    
             </ContainerBtnModalIncomes> 
 
@@ -97,11 +96,18 @@ export default function Main({ navigation }){
         </Modal>
       
       </Container>
-      <ContainerBtn>
+     
+      <ContainerBtn >     
         <BackgroundBtnAdd>
-          <Icon name="add-circle" size={52} color={'#343434'} onPress={() => setModalIsVisible(true)}/>
-        </BackgroundBtnAdd>    
+          <Button 
+            icon={<Ionicons name="ios-add" size={35} color="white"/>}
+            buttonStyle={{borderRadius: 100, backgroundColor: "#333"}}
+            color="#333"
+            onPress={() => setModalIsVisible(true)}
+          />         
+        </BackgroundBtnAdd>        
       </ContainerBtn>  
+      
 
     </>
   );

@@ -97,11 +97,11 @@ const ItemDateExpense = styled.Text`
   position: absolute;
   margin-left: 275px;
   margin-top: 18px;
-  opacity: 0.6
+  opacity: 0.6;
 `;
 
 const ItemCategory = styled.Text`
-  font-size: 18;
+  font-size: 18px;
   font-weight: bold;
   margin-left: 10px;
   color: #000;

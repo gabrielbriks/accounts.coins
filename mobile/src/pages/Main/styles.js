@@ -45,7 +45,7 @@ export const MainHeader = styled.View`
 
 export const ContainerBtnModal = styled.View`
   flex: 1;   
-  margin-left: 280px;
+  margin-left: 278px;
   margin-top: 540px;
   position: absolute;
   align-items: center;
@@ -54,13 +54,14 @@ export const ContainerBtnModal = styled.View`
 
 export const BackgroundBtnAddModal = styled.View`
   flex: 1;
-  background-color: rgba(255,255,255,0.8);
-  width: 52px;
-  height: 52px;
+  /* background-color: rgba(255,255,255,0.4); */
+  width: 49px;
+  height: 47px;
   align-self: flex-end;
   margin-top: 0px;
   border-radius: 100px;
   flex-direction: column;
+  align-content: center;
 `;
 
 export const ContainerBtnModalOptionsExpenses = styled.View`
