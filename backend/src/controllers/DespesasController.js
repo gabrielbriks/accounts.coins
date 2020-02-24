@@ -6,7 +6,7 @@ const UserSchema = require('../models/User');
 module.exports ={
     // Listar : Index
     async index(req, res){
-        const despesas = await DespesaSchema.find();
+        const despesas = await DespesaSchema.find().sort({'createAt': 'descending'});
         return res.json(despesas);
     },
 
@@ -23,7 +23,7 @@ module.exports ={
     //Buscar despesas por usuario
     async showDespesasFromUser(req, res){
         const user = await UserSchema.findById(req.query.id);// id == req.login
-        const despesas = await DespesaSchema.find({ "byRegistered": user._id });
+        const despesas = await DespesaSchema.find({ "byRegistered": user._id }).sort({'createAt': 'descending'});
         
         return res.json(despesas);
 
