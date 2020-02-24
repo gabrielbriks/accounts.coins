@@ -2,7 +2,7 @@ import React, { useState ,useEffect } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'
 import styled from "styled-components";
-import { Button } from 'react-native-elements';
+import { Button} from 'react-native-elements';
 
 import { Container, CardContainer, ContainerTitle, CardTitle, CardValue } from './styles';
 import api from "../../services/api";
@@ -26,34 +26,18 @@ export default function Incomes() {
   return (
     <ScrollView style={styles.container}>
       <Container>
+       
        {incomes.map(income => (
           <CardContainer key={income._id} >
             <ContainerTitle>
-              <Button 
-                icon={<Icon name="delete" size={35} color="#000"/>}
-                buttonStyle={{borderRadius: 100, backgroundColor: "transparent"}}
-                // onPress={() => setModalIsVisible(false)}
-                containerStyle={styles.icons}
-              /> 
-              <CardTitle>{income.description}</CardTitle>
+              <TouchableOpacity style={styles.icons} onPress={() => alert('fui pressionado !')}>
+                <Icon name="delete" size={38} color="#ce001d"/>
+              </TouchableOpacity>              
+              <CardTitle>{income.name}</CardTitle>
             </ContainerTitle>
             <CardValue>R$ {income.value}</CardValue> 
           </CardContainer>
-       ))}
-        
-{/* 
-        <CardContainer>
-        <ContainerTitle>
-          <Button 
-            icon={<Icon name="delete" size={35} color="#000"/>}
-            buttonStyle={{borderRadius: 100, backgroundColor: "transparent"}}
-            // onPress={() => setModalIsVisible(false)}
-            containerStyle={styles.icons}
-          /> 
-          <CardTitle> Freelancers </CardTitle>
-        </ContainerTitle>
-        <CardValue>R$ 700,56</CardValue>
-        </CardContainer> */}
+       ))}        
         
       </Container>
       
@@ -69,7 +53,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#4169E1",
   },
   icons:{
+    width: 55,
+    height: 55,
+    backgroundColor: 'transparent',
     position: "absolute",
-    marginLeft: 280,
+    alignSelf: "flex-end",
+    alignItems: "center",
+    justifyContent: 'center',    
   },
 });
