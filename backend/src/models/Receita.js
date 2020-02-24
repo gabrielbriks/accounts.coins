@@ -10,6 +10,7 @@ const ReceitaSchema = new mongoose.Schema({
   createAt:{
     type: Date,
     default: Date.now,
+    timezone: "America/Sao_Paulo",
   },
   byRegistered:{
     type: mongoose.Schema.Types.ObjectId,
