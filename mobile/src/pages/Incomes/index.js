@@ -1,45 +1,60 @@
-import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import React, { useState ,useEffect } from 'react';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'
 import styled from "styled-components";
+import { Button } from 'react-native-elements';
 
 import { Container, CardContainer, ContainerTitle, CardTitle, CardValue } from './styles';
+import api from "../../services/api";
 
 export default function Incomes() {
   
-  async function showIncomesByUser() {
-    
-  }
+  const [incomes, setIncomes] = useState([]);
+
+  useEffect(() => {
+    async function loadIncomesByUser() {
+      const response = await api.get('/receitas');
+  
+      setIncomes(response.data);
+      console.log('DENTRO', response.data);
+    }
+    loadIncomesByUser();
+  },[]);
+
+  console.log('STATE', incomes);
 
   return (
     <ScrollView style={styles.container}>
       <Container>
-        <Text style={{fontSize: 32}}>Page Incomes</Text>
-
-        <CardContainer>{/* This is Card , Has tamanho and background and bordes*/}
-        <ContainerTitle>{/* This is Container title of card, has a line bottom */}
-          <Icon />{/* Icon with action delete */}
-          <CardTitle> Investimentos </CardTitle>{/* Title of Card */}
-        </ContainerTitle>
-        <CardValue>R$ 700,56</CardValue>{/* This is Card Value */}   
-        </CardContainer>
-
-        <CardContainer>{/* This is Card , Has tamanho and background and bordes*/}
-        <ContainerTitle>{/* This is Container title of card, has a line bottom */}
-          <Icon />{/* Icon with action delete */}
-          <CardTitle> Freelancers </CardTitle>{/* Title of Card */}
-        </ContainerTitle>
-        <CardValue>R$ 700,56</CardValue>{/* This is Card Value */}   
-        </CardContainer>
+       {incomes.map(income => (
+          <CardContainer key={income._id} >
+            <ContainerTitle>
+              <Button 
+                icon={<Icon name="delete" size={35} color="#000"/>}
+                buttonStyle={{borderRadius: 100, backgroundColor: "transparent"}}
+                // onPress={() => setModalIsVisible(false)}
+                containerStyle={styles.icons}
+              /> 
+              <CardTitle>{income.description}</CardTitle>
+            </ContainerTitle>
+            <CardValue>R$ {income.value}</CardValue> 
+          </CardContainer>
+       ))}
         
-        <CardContainer>{/* This is Card , Has tamanho and background and bordes*/}
-        <ContainerTitle>{/* This is Container title of card, has a line bottom */}
-          <Icon />{/* Icon with action delete */}
-          <CardTitle> Name Income </CardTitle>{/* Title of Card */}
+{/* 
+        <CardContainer>
+        <ContainerTitle>
+          <Button 
+            icon={<Icon name="delete" size={35} color="#000"/>}
+            buttonStyle={{borderRadius: 100, backgroundColor: "transparent"}}
+            // onPress={() => setModalIsVisible(false)}
+            containerStyle={styles.icons}
+          /> 
+          <CardTitle> Freelancers </CardTitle>
         </ContainerTitle>
-        <CardValue>R$ 700,56</CardValue>{/* This is Card Value */}   
-        </CardContainer>
-
+        <CardValue>R$ 700,56</CardValue>
+        </CardContainer> */}
+        
       </Container>
       
       <Text style={{fontSize: 72, color: '#fff'}}>
@@ -52,5 +67,9 @@ export default function Incomes() {
 const styles = StyleSheet.create({
   container:{
     backgroundColor: "#4169E1",
-  }
+  },
+  icons:{
+    position: "absolute",
+    marginLeft: 280,
+  },
 });

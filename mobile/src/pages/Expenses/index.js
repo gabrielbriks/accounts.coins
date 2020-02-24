@@ -22,13 +22,13 @@ export default function Expenses() {
       
       setExpenses(response.data);
 
-      console.log('DENTRO', response.data);
+      //console.log('DENTRO', response.data);
     } 
     loadExpensesByUser();  
   }, []);
 
-  console.log('STATE',expenses);
-  expenses.map(expense =>{console.log(expense.createAt.toString())})
+  //console.log('STATE',expenses);
+  
   return (
     <ScrollView>
       <Container>

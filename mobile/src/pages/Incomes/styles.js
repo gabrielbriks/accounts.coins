@@ -29,6 +29,7 @@ export const CardTitle= styled.Text`
   opacity: 0.9;
   color: #333;
   margin-left: 15px;
+  margin-top: 18px;
   font-weight: 500;
 `;
 
