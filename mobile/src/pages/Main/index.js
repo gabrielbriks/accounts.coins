@@ -9,7 +9,6 @@ import { Button } from 'react-native-elements';
 
 import CardExpense from '../../components/CardExpenses';
 import CardIncomes from  '../../components/CardIncomes';
-import ButtonAdd from '../../components/Elements/ButtonAdd'
 
 import {  
   ContainerBtn,BackgroundBtnAdd,Container,BackgroundAvatarIcon, MainHeader, ContainerBtnModal,
