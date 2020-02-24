@@ -6,7 +6,7 @@ const ReceitaSchema = new mongoose.Schema({
   name: String,
   value: Number,
   category: String,
-  description: String,
+  //description: String, >> Agora o "name" assume essa caracteristica
   createAt:{
     type: Date,
     default: Date.now,
