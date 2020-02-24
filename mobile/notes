@@ -19,7 +19,17 @@ yarn add react-navigation-stack
     Link : https://github.com/benhurott/react-native-masked-text
     - Install:
         Comand: yarn add react-native-masked-text 
-    
+
+- Using library momentJs for format dates 
+    Link: https://momentjs.com/
+    -Install
+        Comand: yarn add moment
+
+- Using library date-fns for format dates 
+    Link: https://blog.rocketseat.com.br/datas-e-horarios-javascript-date-fns-moment/
+    Install: 
+        yarn add date-fns
+        yarn add date-fns-tz >> time zones       
 
 #Esclarecimentos:
 
