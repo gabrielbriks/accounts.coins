@@ -1,20 +1,38 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
-import { CheckBox } from 'react-native-elements';
+import React, { useState } from "react";
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { CheckBox } from "react-native-elements";
 import {TextInputMask}  from "react-native-masked-text";
 import styled from "styled-components";
+import { RadioButton } from "react-native-paper";
+import { ListItem, Radio, Left, Right } from "native-base";
 
-
+import api from "../../services/api";
 // import { Container } from './styles';
 
-export default function RegisterExpenses() {
-
-  const [categoryChecked, setCategoryChecked] = useState(false);
-  const [money, setMoney] = useState('');
-  // const [categoryChecked, setCategoryChecked] = useState(false);
-  // const [categoryChecked, setCategoryChecked] = useState(false);
-  // const [categoryChecked, setCategoryChecked] = useState(false);
+export default function RegisterExpenses({navigation}) {
+  const [moneyFiled, setMoneyfield] = useState("");
+  const [nameExpense, setNameExpense] = useState("");
+  const [value, setValue] = useState("");
+  const [optionCategory, setOptioncategory] = useState("");
   
+
+  function saveExpense(){
+
+    const response = api.post("/despesa",{
+      name: nameExpense,
+      value,
+      category: optionCategory,
+    });
+
+    console.log(response);
+    //  console.log(nameExpense);
+    //  console.log(value);
+    //  console.log(optionCategory);
+     
+
+    navigation.navigate('Main');
+  }
+
 
   return (
     <ScrollView>
@@ -26,142 +44,89 @@ export default function RegisterExpenses() {
             placeholderTextColor = "#acacac"
             autoCapitalize = "characters"
             autoCorrect = {false}
-            /* value = {nameExpenses} */
-            /* onChangeText = {setNameExpenses} */
+            value = {nameExpense} 
+            onChangeText = {text => setNameExpense(text)} 
           />
           <Text style={styles.text}> Valor dessa Despesa </Text>
           <TextInputMask 
-            type={'money'}
+            type={"money"}
             style = {styles.inputs} 
             placeholder = "Ex: 723,90"
             placeholderTextColor = "#acacac"
-             autoCorrect = {false}
+            autoCorrect = {false}
             keyboardType= "numeric"
-            value={money}
-            onChangeText={text => {setMoney(text)}}
+            value={value}
+            onChangeText={ (text, rawText) => setValue(rawText)}
+            includeRawValueInChangeText={true}
             
           />
           <View style={styles.viewCategory}>
             <Text style={styles.text}>Categoria dessa Despesa</Text>
-
-            <CheckBox
-              containerStyle={{
-                backgroundColor:"transparent",
-                width: 320,
-                borderBottomWidth: StyleSheet.hairlineWidth,
-                borderBottomColor: "rgba(0, 0, 25, 0.8)"
-              }}
-              textStyle={{flex:1}}
-              left             
-              title='Casa'
-              iconRight
-              iconType='material'
-              checkedIcon='done'
-              uncheckedIcon='add'
-              checkedColor='blue'
-              checked={categoryChecked}
-              onPress={() => { !categoryChecked ? setCategoryChecked(true) : setCategoryChecked(false) ; }}
-            />
-          
-            <CheckBox
-              containerStyle={{
-                backgroundColor:"transparent",
-                width: 320,
-                borderBottomWidth: StyleSheet.hairlineWidth,
-                borderBottomColor: "rgba(0, 0, 25, 0.8)"
-              }}
-              textStyle={{flex:1}}
-              left             
-              title='Transporte'
-              iconRight
-              iconType='material'
-              checkedIcon='done'
-              uncheckedIcon='add'
-              checkedColor='blue'
-              checked={categoryChecked}
-              onPress={() => { !categoryChecked ? setCategoryChecked(true) : setCategoryChecked(false) ; }}
-            />
-
-            <CheckBox
-              containerStyle={{
-                backgroundColor:"transparent",
-                width: 320,
-                borderBottomWidth: StyleSheet.hairlineWidth,
-                borderBottomColor: "rgba(0, 0, 25, 0.8)"
-              }}
-              textStyle={{flex:1}}
-              left             
-              title='Comida'
-              iconRight
-              iconType='material'
-              checkedIcon='done'
-              uncheckedIcon='add'
-              checkedColor='blue'
-              checked={categoryChecked}
-              onPress={() => { !categoryChecked ? setCategoryChecked(true) : setCategoryChecked(false) ; }}
-            />
-
-            <CheckBox
-              containerStyle={{
-                backgroundColor:"transparent",
-                width: 320,
-                borderBottomWidth: StyleSheet.hairlineWidth,
-                borderBottomColor: "rgba(0, 0, 25, 0.8)"
-              }}
-              textStyle={{flex:1}}
-              left             
-              title='Transporte'
-              iconRight
-              iconType='material'
-              checkedIcon='done'
-              uncheckedIcon='add'
-              checkedColor='blue'
-              checked={categoryChecked}
-              onPress={() => { !categoryChecked ? setCategoryChecked(true) : setCategoryChecked(false) ; }}
-            />
-            
-            <CheckBox
-              containerStyle={{
-                backgroundColor:"transparent",
-                width: 320,
-                borderBottomWidth: StyleSheet.hairlineWidth,
-                borderBottomColor: "rgba(0, 0, 25, 0.8)"
-              }}
-              textStyle={{flex:1}}
-              left             
-              title='Serviço'
-              iconRight
-              iconType='material'
-              checkedIcon='done'
-              uncheckedIcon='add'
-              checkedColor='blue'
-              checked={categoryChecked}
-              onPress={() => { !categoryChecked ? setCategoryChecked(true) : setCategoryChecked(false) ; }}
-            />
-
-            <CheckBox
-              containerStyle={{
-                backgroundColor:"transparent",
-                width: 320,
-                borderBottomWidth: StyleSheet.hairlineWidth,
-                borderBottomColor: "rgba(0, 0, 25, 0.8)"
-              }}
-              textStyle={{flex:1}}
-              left             
-              title='Outros Gastos'
-              iconRight
-              iconType='material'
-              checkedIcon='done'
-              uncheckedIcon='add'
-              checkedColor='blue'
-              checked={categoryChecked}
-              onPress={() => { !categoryChecked ? setCategoryChecked(true) : setCategoryChecked(false) ; }}
-            />
+            <ListItem style={{width: 320}}>
+              <Left>
+                <Text>Casa</Text>
+              </Left>
+              <Right>
+                <Radio 
+                  selectedColor={"#4169E1"}
+                  selected={optionCategory === "Casa" ? true : false} 
+                  onPress={() => setOptioncategory("Casa")}
+                />
+              </Right>
+            </ListItem>         
+            <ListItem>        
+              <Left>
+                <Text>Transporte</Text>
+              </Left>            
+              <Right>               
+                <Radio
+                  selectedColor={"#4169E1"}
+                  selected={optionCategory === "Transporte" ? true : false} 
+                  onPress={() => setOptioncategory("Transporte")}
+                />   
+              </Right>            
+            </ListItem>
+            <ListItem>        
+              <Left>
+                <Text>Comida</Text>
+              </Left>            
+              <Right>               
+                <Radio
+                  selectedColor={"#4169E1"}
+                  selected={optionCategory === "Comida" ? true : false} 
+                  onPress={() => setOptioncategory("Comida")}
+                />   
+              </Right>            
+            </ListItem>
+            <ListItem>        
+              <Left>
+                <Text >Serviços</Text>
+              </Left>            
+              <Right>               
+                <Radio
+                  selectedColor={"#4169E1"}
+                  selected={optionCategory === "Servicos" ? true : false} 
+                  onPress={() => setOptioncategory("Servicos")}
+                />   
+              </Right>            
+            </ListItem>
+            <ListItem >        
+              <Left>
+                <Text style={styles.labelsOptionCategory}>Outros Gastos</Text>
+              </Left>            
+              <Right>               
+                <Radio
+                  selectedColor={"#4169E1"}
+                  selected={optionCategory === "OutrosGastos" ? true : false} 
+                  onPress={() => setOptioncategory("OutrosGastos")}
+                />   
+              </Right>            
+            </ListItem>
 
             <TouchableOpacity 
                 title="Salvar"
                 style={styles.button}
-                //onPress={ signInPress}
+                onPress={() => {saveExpense()}}
             >
             <ButtonText>Salvar</ButtonText>
             </TouchableOpacity>
@@ -174,16 +139,17 @@ export default function RegisterExpenses() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eee',
-    alignItems: 'flex-start',
-    alignContent: 'center',
+    backgroundColor: "#eee",
+    alignItems: "flex-start",
+    alignContent: "center",
     marginLeft: 10,   
   },
   text: {
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "left",
-    marginTop: 10,
+    marginTop: 22,
+    marginBottom: 10,
 
   },
   inputs:{
@@ -192,7 +158,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     justifyContent: "center",
     alignItems: "stretch",
-    // borderBottomStartRadius: 100,
     borderBottomWidth: 1.2,
     borderBottomColor:"#333",
     height: 35,
@@ -212,7 +177,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignItems: "center",
     alignSelf: "center"
-  }
+  }, 
+  labelsOptionCategory:{
+    fontSize: 14,
+    fontStyle:"normal",
+    fontWeight: "bold",
+    opacity: 0.6
+  },
 
 });
 
