@@ -16,21 +16,26 @@ export default function RegisterExpenses({navigation}) {
   const [optionCategory, setOptioncategory] = useState("");
   
 
-  function saveExpense(){
+  async function saveExpense(){
 
-    const response = api.post("/despesa",{
+    const response = await api.post("/despesa",{
       name: nameExpense,
       value,
       category: optionCategory,
     });
 
-    console.log(response);
+    console.log(response.data);
     //  console.log(nameExpense);
     //  console.log(value);
     //  console.log(optionCategory);
-     
-
-    navigation.navigate('Main');
+  
+    if(!response.data){
+        return alert("Houve um empecilho ao salvar sua Despesa, confira sua conexão e tente novamente!  :)");
+    }
+    setNameExpense("");
+    setValue("");      
+    alert("Salvo com Sucesso");
+    // navigation.navigate('Main');
   }
 
 
