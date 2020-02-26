@@ -1,19 +1,40 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
-import { CheckBox } from 'react-native-elements';
+import React, { useState } from "react";
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { CheckBox } from "react-native-elements";
 import {TextInputMask}  from "react-native-masked-text";
 import styled from "styled-components";
+import { ListItem, Radio, Left, Right } from "native-base";
 
-
+import api from "../../services/api";
 // import { Container } from './styles';
 
 export default function RegisterIncomes() {
 
-  const [categoryChecked, setCategoryChecked] = useState(false);
-  const [money, setMoney] = useState('');
-  // const [categoryChecked, setCategoryChecked] = useState(false);
-  // const [categoryChecked, setCategoryChecked] = useState(false);
-  // const [categoryChecked, setCategoryChecked] = useState(false);
+  const [nameIncome, setNameIncome] = useState("")
+  const [optionCategory, setOptionCategory] = useState("");
+  const [value, setValue] = useState("");
+ 
+  async function saveIncome(){
+
+    const response = await api.post("/receita",{
+      name: nameIncome,
+      value,
+      category: optionCategory,
+    });
+
+    //console.log(response.data);
+    //  console.log(nameIncome);
+    //  console.log(value);
+    //  console.log(optionCategory);
+  
+    if(!response.data){
+        return alert("Houve um empecilho ao salvar sua Despesa, confira sua conexão e tente novamente!  :)");
+    }
+    setNameIncome("");
+    setValue("");      
+    alert("Salvo com Sucesso");
+    //navigation.navigate('Main');
+  }
   
 
   return (
@@ -26,86 +47,66 @@ export default function RegisterIncomes() {
             placeholderTextColor = "#acacac"
             autoCapitalize = "characters"
             autoCorrect = {false}
-            /* value = {nameExpenses} */
-            /* onChangeText = {setNameExpenses} */
+            value = {nameIncome} 
+            onChangeText = {text => setNameIncome(text)} 
           />
           <Text style={styles.text}> Valor dessa Receita </Text>
           <TextInputMask 
-            type={'money'}
+            type={"money"}
             style = {styles.inputs} 
             placeholder = "Ex: 723,90"
             placeholderTextColor = "#acacac"
              autoCorrect = {false}
             keyboardType= "numeric"
-            value={money}
-            onChangeText={text => {setMoney(text)}}
-            
+            value={value}
+            onChangeText={(text, rawText) => {setValue(rawText)}}
+            includeRawValueInChangeText={true}
           />
 
           <View style={styles.viewCategory}>
             <Text style={styles.text}>Categoria dessa Receita</Text>
 
-            <CheckBox
-              containerStyle={{
-                backgroundColor:"transparent",
-                width: 320,
-                borderBottomWidth: StyleSheet.hairlineWidth,
-                borderBottomColor: "rgba(0, 0, 25, 0.8)"
-              }}
-              textStyle={{flex:1}}
-              left             
-              title='Remuneração'
-              iconRight
-              iconType='material'
-              checkedIcon='done'
-              uncheckedIcon='add'
-              checkedColor='blue'
-              checked={categoryChecked}
-              onPress={() => { !categoryChecked ? setCategoryChecked(true) : setCategoryChecked(false) ; }}
-            />
-          
-            <CheckBox
-              containerStyle={{
-                backgroundColor:"transparent",
-                width: 320,
-                borderBottomWidth: StyleSheet.hairlineWidth,
-                borderBottomColor: "rgba(0, 0, 25, 0.8)"
-              }}
-              textStyle={{flex:1}}
-              left             
-              title='Bônus'
-              iconRight
-              iconType='material'
-              checkedIcon='done'
-              uncheckedIcon='add'
-              checkedColor='blue'
-              checked={categoryChecked}
-              onPress={() => { !categoryChecked ? setCategoryChecked(true) : setCategoryChecked(false) ; }}
-            />
-
-            <CheckBox
-              containerStyle={{
-                backgroundColor:"transparent",
-                width: 320,
-                borderBottomWidth: StyleSheet.hairlineWidth,
-                borderBottomColor: "rgba(0, 0, 25, 0.8)"
-              }}
-              textStyle={{flex:1}}
-              left             
-              title='Outros'
-              iconRight
-              iconType='material'
-              checkedIcon='done'
-              uncheckedIcon='add'
-              checkedColor='blue'
-              checked={categoryChecked}
-              onPress={() => { !categoryChecked ? setCategoryChecked(true) : setCategoryChecked(false) ; }}
-            />
+            <ListItem style={{width: 320}}>
+              <Left>
+                <Text>Remuneração</Text>
+              </Left>
+              <Right>
+                <Radio 
+                  selectedColor={"#4169E1"}
+                  selected={optionCategory === "Remuneracao" ? true : false} 
+                  onPress={() => setOptionCategory("Remuneracao")}
+                />
+              </Right>
+            </ListItem>
+            <ListItem style={{width: 320}}>
+              <Left>
+                <Text>Bônus</Text>
+              </Left>
+              <Right>
+                <Radio 
+                  selectedColor={"#4169E1"}
+                  selected={optionCategory === "Bonus" ? true : false} 
+                  onPress={() => setOptionCategory("Bonus")}
+                />
+              </Right>
+            </ListItem>     
+            <ListItem style={{width: 320}}>
+              <Left>
+                <Text>Outros</Text>
+              </Left>
+              <Right>
+                <Radio 
+                  selectedColor={"#4169E1"}
+                  selected={optionCategory === "Outros" ? true : false} 
+                  onPress={() => setOptionCategory("Outros")}
+                />
+              </Right>
+            </ListItem>  
 
             <TouchableOpacity 
                 title="Salvar"
                 style={styles.button}
-                //onPress={ signInPress}
+                onPress={() => {saveIncome()}}
             >
             <ButtonText>Salvar</ButtonText>
             </TouchableOpacity>
@@ -119,8 +120,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#eee',
-    alignItems: 'flex-start',
-    alignContent: 'center',
+    alignItems: "flex-start",
+    alignContent: "center",
     marginLeft: 10,   
   },
   text: {
@@ -128,7 +129,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "left",
     marginTop: 10,
-
   },
   inputs:{
     width: 310,
@@ -136,7 +136,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     justifyContent: "center",
     alignItems: "stretch",
-    // borderBottomStartRadius: 100,
     borderBottomWidth: 1.2,
     borderBottomColor:"#333",
     height: 35,
