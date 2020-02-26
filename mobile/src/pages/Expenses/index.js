@@ -1,5 +1,6 @@
 import React, { useState, useEffect }from 'react';
 import { View, Text, StyleSheet, ScrollView, ActivityIndicator, Modal } from 'react-native';
+import { TextMask } from "react-native-masked-text";
 import styled from 'styled-components';
 import moment from 'moment';
 import momentTz from 'moment-timezone';
@@ -39,11 +40,11 @@ export default function Expenses() {
      
         {expenses.map(expense => (
           
-          <ListItem key={expense._id}>{/* Has size of item list, line in buttom and */}
+          <ListItem key={expense._id}>
             <ItemDateExpense>{moment(expense.createAt).calendar()}</ItemDateExpense>
-            <ItemCategory>{expense.category}</ItemCategory>{/* This is the title of item list, is the name category */}
-            <DescriptionItem>{expense.name}</DescriptionItem>{/* Description of expense, exemple "CEB" */}
-            <ItemValue>R$ {expense.value/*R$ 37,92*/}</ItemValue>{/* This is value of expense; Can use some TextMask */}
+            <ItemCategory>{expense.category}</ItemCategory>
+            <DescriptionItem>{expense.name}</DescriptionItem>
+            <TextMask type="money" value={expense.value} style={styles.itemValueMask} />
           </ListItem>
         )) }        
     
@@ -60,4 +61,11 @@ const styles = StyleSheet.create({
     alignSelf:"center",
     marginTop: 250,
   },
+  itemValueMask:{
+    fontSize: 18, 
+    fontWeight: "300",
+    marginLeft: 30,
+    color: "#000",
+    opacity: 0.6,
+  }
 });

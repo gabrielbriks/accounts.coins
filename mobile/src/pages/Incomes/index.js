@@ -3,6 +3,7 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity, ActivityIndicator
 import Icon from 'react-native-vector-icons/AntDesign'
 import styled from "styled-components";
 import { Button} from 'react-native-elements';
+import { TextInputMask, TextMask }  from "react-native-masked-text";
 
 import { Container, CardContainer, ContainerTitle, CardTitle, CardValue } from './styles';
 import api from "../../services/api";
@@ -39,7 +40,8 @@ export default function Incomes() {
               </TouchableOpacity>              
               <CardTitle>{income.name}</CardTitle>
             </ContainerTitle>
-            <CardValue>R$ {income.value}</CardValue> 
+            {/* <CardValue>R$ {income.value}</CardValue> */}
+            <TextMask type="money" value={income.value} style={styles.cardValueMask} /> 
           </CardContainer>
        ))}        
         
@@ -68,4 +70,12 @@ const styles = StyleSheet.create({
     alignSelf:"center",
     marginTop: 270,
   },
+  cardValueMask:{
+    flex: 1,
+    fontSize: 24,
+    color: "#333",
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: 18,
+  }
 });
