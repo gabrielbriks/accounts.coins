@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Animated, TextInput, TouchableOpacity, AsyncStorage, StatusBar} from 'react-native';
+import { StyleSheet, Text, View, Animated, TextInput, TouchableOpacity, AsyncStorage, StatusBar, ActivityIndicator} from 'react-native';
 import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components";
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -20,31 +20,36 @@ export default function Login({ navigation }){
 
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
-    
-    async function signInPress(){
-        console.log(login);
-        console.log(password);
-       
-        // const response = await api.post('/signin', {
-        //     params:{
-        //         login,
-        //         password
-        //     }
-        // });
-        // console.log(response.status);
-        
-        // if(!response && response == null){
-        //     let error = 'Opss!! Login or Password not exist! Please, try again ...';
-        //     return alert(error);            
-        // }
-        navigation.navigate('Main');
+    const [loading, setLoading] = useState(false);
 
+    async function signInPress(){
+        setLoading(true);
+
+       
+        const response = await api.post('/signin', {
+            params:{
+                login,
+                password
+            }
+        });
+        //console.log(response.status);
+        
+        if(response.status != 200){
+            let error = 'Opss!! Login or Password not exist! Please, try again ...';
+            return alert(error);            
+        }
+        
+        //console.log('entrei no loading off')
+        setLoading(false);
+        navigation.navigate('Main');
+        
     }
 
     return (
         
         <Container>
-            {/* <StatusBar hidden />  oculta a barra superior do android*/}
+            <StatusBar hidden /> 
+            <ActivityIndicator style={styles.loadingIndicator} size="large" color="#fff" animating={loading} hidesWhenStopped={true} />
             <ContainerSignIn>
                 <TextInput style ={styles.input}
                     placeholder="Login"
@@ -69,7 +74,7 @@ export default function Login({ navigation }){
                 <TouchableOpacity 
                     title="Entrar"
                     style={styles.button}
-                    onPress={ signInPress}
+                    onPress={ () => { signInPress(); }}
                 >
                     <ButtonText>Entrar</ButtonText>
                 </TouchableOpacity>
@@ -99,7 +104,14 @@ const styles = StyleSheet.create({
         textAlign: "center",
         alignItems: "center",
         alignSelf: "center"
-    }
+    },
+    loadingIndicator: {
+        flex: 1,
+        position: "absolute",
+        justifyContent: "center",
+        alignSelf:"center",
+        marginTop: 250,
+      },
 })
 
 

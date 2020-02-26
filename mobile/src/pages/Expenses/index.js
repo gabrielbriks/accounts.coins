@@ -1,5 +1,5 @@
 import React, { useState, useEffect }from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator, Modal } from 'react-native';
 import styled from 'styled-components';
 import moment from 'moment';
 import momentTz from 'moment-timezone';
@@ -12,27 +12,31 @@ import { Container, ListItem, DescriptionItem, ItemCategory,ItemDateExpense, Ite
 import api from '../../services/api';
 
 export default function Expenses() {
-
+  const [loading, setLoading] = useState(true);
   const [expenses, setExpenses] = useState([]);
+  
  
   useEffect(() => {
-    
+   //console.log(loading);
     async function loadExpensesByUser() {
       const response = await api.get('/despesas');
       
       setExpenses(response.data);
-
+      setLoading(false);
       //console.log('DENTRO', response.data);
-    } 
-    loadExpensesByUser();  
+    }
+    loadExpensesByUser();
   }, []);
 
   //console.log('STATE',expenses);
   
   return (
     <ScrollView>
+      <Modal visible={loading} transparent = { true } animationType = { 'none' }>
+        <ActivityIndicator style={styles.loadingIndicator} size="large" color="#0000ff" animating={loading} hidesWhenStopped={true} />
+      </Modal>
       <Container>
-        
+     
         {expenses.map(expense => (
           
           <ListItem key={expense._id}>{/* Has size of item list, line in buttom and */}
@@ -48,3 +52,12 @@ export default function Expenses() {
   );
 }
 
+const styles = StyleSheet.create({
+  loadingIndicator: {
+    flex: 1,
+    position: "absolute",
+    justifyContent: "center",
+    alignSelf:"center",
+    marginTop: 250,
+  },
+});

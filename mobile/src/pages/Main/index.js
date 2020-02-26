@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Animated, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Animated, TouchableOpacity, StatusBar, ActivityIndicator} from 'react-native';
 import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components";
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -33,8 +33,8 @@ export default function Main({ navigation }){
     <>
     
       <Container >
-       
-        <MainHeader style={{/*backgroundColor: '#333'*/}}>
+        <StatusBar hidden={false} /> 
+        <MainHeader>
           <TouchableOpacity>
             <BackgroundAvatarIcon > 
               <Icon name="account-circle" size={65} color={'#343434'} />

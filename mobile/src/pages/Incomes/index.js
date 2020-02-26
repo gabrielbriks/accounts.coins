@@ -1,5 +1,5 @@
 import React, { useState ,useEffect } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, ActivityIndicator, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'
 import styled from "styled-components";
 import { Button} from 'react-native-elements';
@@ -8,23 +8,27 @@ import { Container, CardContainer, ContainerTitle, CardTitle, CardValue } from '
 import api from "../../services/api";
 
 export default function Incomes() {
-  
+  const [loading, setLoading] = useState(true);
   const [incomes, setIncomes] = useState([]);
 
   useEffect(() => {
+
     async function loadIncomesByUser() {
       const response = await api.get('/receitas');
   
       setIncomes(response.data);
-      console.log('DENTRO', response.data);
+      setLoading(false);
+      
     }
     loadIncomesByUser();
   },[]);
 
-  console.log('STATE', incomes);
 
   return (
     <ScrollView style={styles.container}>
+      <Modal visible={loading} transparent = { true } animationType = { 'none' }>
+        <ActivityIndicator style={styles.loadingIndicator} size="large" color="#fff" animating={loading} hidesWhenStopped={true} />
+      </Modal>
       <Container>
        
        {incomes.map(income => (
@@ -40,10 +44,6 @@ export default function Incomes() {
        ))}        
         
       </Container>
-      
-      <Text style={{fontSize: 72, color: '#fff'}}>
-          Exemple ScrollView ... 
-      </Text>
     </ScrollView>
 
   );
@@ -60,5 +60,12 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     alignItems: "center",
     justifyContent: 'center',    
+  },
+  loadingIndicator: {
+    flex: 1,
+    position: "absolute",
+    justifyContent: "center",
+    alignSelf:"center",
+    marginTop: 270,
   },
 });
