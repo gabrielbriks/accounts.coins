@@ -37,11 +37,25 @@ export default function Login({ navigation }){
                 });
                 /// AJUSTAR ESSE COMPORTAMENTO DO RESPONSE;
                 //console.log("response::: ", response.config.data);
-                await AsyncStorage.setItem("@LogonUser", response.config.data);
+                // if(response.data.error){
+                //     console.log(response.data);
+                //     setLoading(false);
+                //     return alert(response.data.error);
+                    
+                // }
+
+               
+                console.log(response);
+                // await AsyncStorage.setItem("@LogonUser", response.config.data);
+                // setLoading(false);
+                // navigation.navigate('Main');
+        
+
+               
                 
 
-                setLoading(false);
-                navigation.navigate('Main');
+                // setLoading(false);
+                // navigation.navigate('Main');
             }
             catch(_err){
                 let error = "Houve um problema com o login, verifique suas credenciais!"
