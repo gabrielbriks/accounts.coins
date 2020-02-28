@@ -25,6 +25,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         // trim = true,
         //required = true,
+    },
+    createAt:{
+        type: Date,
+        default: Date.now,
+        timezone: "America/Sao_Paulo",
     }
     
 

@@ -8,7 +8,7 @@ module.exports = {
 
   //Listar Incomes
   async index(req, res){
-    const receitas = await ReceitasSchema.find();
+    const receitas = await ReceitasSchema.find().sort({'createAt': 'descending'});
     return res.json(receitas);
   },
 
@@ -21,7 +21,7 @@ module.exports = {
   //Buscar receitas por usuario
   async showReceitasFromUser(req, res){
     const user = await UserSchema.findById(req.query.id);
-    const receitas = await ReceitasSchema.find({ "byRegistered": user.id });
+    const receitas = await ReceitasSchema.find({ "byRegistered": user.id }).sort({'createAt': 'descending'});
 
     return res.json(receitas);
   },
