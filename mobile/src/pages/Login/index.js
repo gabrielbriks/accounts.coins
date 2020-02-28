@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Animated, TextInput, TouchableOpacity, AsyncStorage, StatusBar, ActivityIndicator} from 'react-native';
+import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components";
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { NavigationSwitchScreenProps, NavigationStackOptions, createStackNavigator } from 'react-navigation-stack';
 
 
 import api from "../../services/api";
@@ -33,7 +35,7 @@ export default function Login({ navigation }){
                         password
                     }
                 });
-                /// AJUSTAR ESSE COMPORTAMENTO DO RESPONSE QUE NAO ESTA SE COMPORTANDO DE UMA FORMA LEGAL;
+                /// AJUSTAR ESSE COMPORTAMENTO DO RESPONSE;
                 //console.log("response::: ", response.config.data);
                 await AsyncStorage.setItem("@LogonUser", response.config.data);
                 
@@ -41,7 +43,7 @@ export default function Login({ navigation }){
                 setLoading(false);
                 navigation.navigate('Main');
             }
-            catch (_err){
+            catch(_err){
                 let error = "Houve um problema com o login, verifique suas credenciais!"
                 return alert(error);
             }

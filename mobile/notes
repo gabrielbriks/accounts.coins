@@ -34,7 +34,11 @@ yarn add react-navigation-stack
 # Implementando AsyncStorage na aplicação
     Install:
         Comand : yarn add @react-native-community/async-storage
-        AsyncStorage: Para entender a definição do mesmo basta acessar o seguinte link >> https://facebook.github.io/react-native/docs/asyncstorage
+        
+
+#Esclarecimentos:
+
+    AsyncStorage: Para entender a definição do mesmo basta acessar o seguinte link >> https://facebook.github.io/react-native/docs/asyncstorage
 
 
 #Dicas:

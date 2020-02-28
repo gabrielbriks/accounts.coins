@@ -9,7 +9,6 @@ import { Button } from 'react-native-elements';
 
 import CardExpense from '../../components/CardExpenses';
 import CardIncomes from  '../../components/CardIncomes';
-import validateAuth from '../../utils/validateAuthentication';
 
 import {  
   ContainerBtn,BackgroundBtnAdd,Container,BackgroundAvatarIcon, MainHeader, ContainerBtnModal,
@@ -17,32 +16,25 @@ import {
   TextOptionIncome } from "./styles";
 
 
-export default function Main({ navigation }) {
+export default function Main({ navigation }){
   
   const [modalIsVisible, setModalIsVisible] = useState(false);  
-  //const isAutenticated = await AsyncStorage.getItem("@LogonUser");
-  const isAutenticated = validateAuth();
 
-  async function showExpenses (params) {    
-    console.log(isAutenticated);
-    if(isAutenticated.error) {
-      alert(isAutenticated.error);
-      return navigation.navigate('Login');      
+  async function showExpenses (params) {
+
+    const isAutenticated = await AsyncStorage.getItem("@LogonUser")
+    
+    if(isAutenticated.length != 0 ){
+      navigation.navigate('Expenses');
     }
-
-    navigation.navigate('Expenses');
-
+    else{
+      alert("Houve um problema com a sua conexão, realize o login novamente!");
+      navigation.navigate('Login');
+    }
   }
 
   async function showIncomes (params) {
-    console.log(isAutenticated);
-    if(isAutenticated.error) {
-      alert(isAutenticated.error);
-      return navigation.navigate('Login');      
-    }
-
     navigation.navigate('Incomes');
-
   }
 
   return (
@@ -88,6 +80,8 @@ export default function Main({ navigation }) {
              <TextOptionExpense>Adicionar despesa</TextOptionExpense>
              <TextOptionIncome>Adicionar Receita</TextOptionIncome>  
             </View>
+                       
+           
             <ContainerBtnModalOptionsExpenses>
               <BackgroundBtnAddModal>
                 <Button 
@@ -96,7 +90,8 @@ export default function Main({ navigation }) {
                   onPress={() =>{ navigation.navigate('RegisterExpenses'); setModalIsVisible(false)}}
                 />       
               </BackgroundBtnAddModal>    
-            </ContainerBtnModalOptionsExpenses>
+            </ContainerBtnModalOptionsExpenses> 
+
             <ContainerBtnModalIncomes>
               <BackgroundBtnAddModal>
                 <Button 
