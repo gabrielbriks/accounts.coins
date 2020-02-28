@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, ScrollView, ActivityIndicator, Modal } from 're
 import { TextMask } from "react-native-masked-text";
 import styled from 'styled-components';
 import moment from 'moment';
-import momentTz from 'moment-timezone';
 import 'moment/locale/pt-br' 
 
 
