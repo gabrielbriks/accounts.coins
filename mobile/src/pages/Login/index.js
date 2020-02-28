@@ -11,12 +11,8 @@ import { Container, ContainerSignIn, Button, ButtonText  } from "./styles";
 
 /* A propiedade navigation, vem de uma forma automatica para todas as pages da nossa aplication */
 export default function Login({ navigation }){
-   //NavigationStackOptions({ hideHeader: {visible: false} })
-    // navigation.setParams({
-    //     hideHeader: true
-    // });
-    
    
+
 
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
@@ -24,24 +20,34 @@ export default function Login({ navigation }){
 
     async function signInPress(){
         setLoading(true);
-
-       
-        const response = await api.post('/signin', {
-            params:{
-                login,
-                password
-            }
-        });
-        //console.log(response.status);
         
-        if(response.status != 200){
-            let error = 'Opss!! Login or Password not exist! Please, try again ...';
-            return alert(error);            
+        if(login.length == 0 || password.length == 0){
+            let error = "Preencha usuário e senha para continuar!"
+            alert(error);
+            setLoading(false);
         }
-        
-        //console.log('entrei no loading off')
-        setLoading(false);
-        navigation.navigate('Main');
+        else{
+            try{
+
+                const response = await api.post('/signin', {
+                    params:{
+                        login,
+                        password
+                    }
+                });
+                /// AJUSTAR ESSE COMPORTAMENTO DO RESPONSE;
+                //console.log("response::: ", response.config.data);
+                await AsyncStorage.setItem("@LogonUser", response.config.data);
+                
+
+                setLoading(false);
+                navigation.navigate('Main');
+            }
+            catch(_err){
+                let error = "Houve um problema com o login, verifique suas credenciais!"
+                return alert(error);
+            }
+        }
         
     }
 

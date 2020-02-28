@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Animated, TouchableOpacity, StatusBar, ActivityIndicator} from 'react-native';
+import { StyleSheet, Text, View, Animated, TouchableOpacity, StatusBar, ActivityIndicator, AsyncStorage} from 'react-native';
 import { PanGestureHandler, ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components";
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -21,7 +21,16 @@ export default function Main({ navigation }){
   const [modalIsVisible, setModalIsVisible] = useState(false);  
 
   async function showExpenses (params) {
-    navigation.navigate('Expenses');
+
+    const isAutenticated = await AsyncStorage.getItem("@LogonUser")
+    
+    if(isAutenticated.length != 0 ){
+      navigation.navigate('Expenses');
+    }
+    else{
+      alert("Houve um problema com a sua conexão, realize o login novamente!");
+      navigation.navigate('Login');
+    }
   }
 
   async function showIncomes (params) {

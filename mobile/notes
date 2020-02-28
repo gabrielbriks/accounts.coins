@@ -31,6 +31,11 @@ yarn add react-navigation-stack
         yarn add date-fns
         yarn add date-fns-tz >> time zones       
 
+# Implementando AsyncStorage na aplicação
+    Install:
+        Comand : yarn add @react-native-community/async-storage
+        
+
 #Esclarecimentos:
 
     AsyncStorage: Para entender a definição do mesmo basta acessar o seguinte link >> https://facebook.github.io/react-native/docs/asyncstorage
