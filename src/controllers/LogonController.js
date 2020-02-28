@@ -6,7 +6,7 @@ const UserSchema = require('../models/User');
 module.exports ={
 
     async signin(req, res){
-        //console.log(req.body);
+        
         const { login, password } = req.body;
         
         const userLogin = await UserSchema.findOne({ login });
