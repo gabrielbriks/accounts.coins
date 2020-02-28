@@ -11,16 +11,25 @@ import CardExpense from '../../components/CardExpenses';
 import CardIncomes from  '../../components/CardIncomes';
 
 import {  
-  ContainerBtn,BackgroundBtnAdd,Container,BackgroundAvatarIcon, MainHeader, ContainerBtnModal,
-  BackgroundBtnAddModal, ContainerBtnModalOptionsExpenses, ContainerBtnModalIncomes, TextOptionExpense,
-  TextOptionIncome } from "./styles";
+  ContainerBtn,
+  BackgroundBtnAdd,
+  Container,
+  BackgroundAvatarIcon, 
+  MainHeader, 
+  ContainerBtnModal,
+  BackgroundBtnAddModal, 
+  ContainerBtnModalOptionsExpenses, 
+  ContainerBtnModalIncomes, 
+  TextOptionExpense,
+  TextOptionIncome 
+} from "./styles";
 
 
 export default function Main({ navigation }){
   
   const [modalIsVisible, setModalIsVisible] = useState(false);  
 
-  async function showExpenses (params) {
+  async function showExpenses () {
 
     const isAutenticated = await AsyncStorage.getItem("@LogonUser")
     
@@ -33,7 +42,7 @@ export default function Main({ navigation }){
     }
   }
 
-  async function showIncomes (params) {
+  async function showIncomes () {
     navigation.navigate('Incomes');
   }
 
