@@ -25,10 +25,12 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.gabrielbriks.accountsmap"
+      "bundleIdentifier": "com.gabrielbriks.accountsmap",
+      "buildNumber": "1.0.0"
     },
     "android":{
-      "package": "com.gabrielbriks.accountsmaps"
+      "package": "com.gabrielbriks.accountsmaps",
+      "versionCode": 1
     }
   }
 }
