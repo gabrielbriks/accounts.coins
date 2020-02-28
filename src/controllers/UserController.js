@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Bcrypt = require("bcryptjs");
 
 const UserSchema = require('../models/User'); 
 
@@ -14,7 +15,9 @@ module.exports = {
     
     // Cadastro : strore
     async store(req, res){
+        req.body.password = Bcrypt.hashSync(req.body.password, 10);
         const user = await UserSchema.create(req.body);
+       // user.password = Bcrypt.hashSync(user.password, 10);
         return res.json(user);
     },
 

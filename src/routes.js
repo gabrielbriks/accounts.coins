@@ -34,8 +34,9 @@ routes.get('/receitasall', ReceitasController.showReceitasFromUser);
 
 //Listar Usuarios
 routes.get('/users', UserController.index);
+
 // Cadastrar Usuario
-routes.post('/user', UserController.store);
+routes.post('/register', UserController.store);
 //-----------
 
 
