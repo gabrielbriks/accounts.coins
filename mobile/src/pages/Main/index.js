@@ -9,7 +9,7 @@ import { Button } from 'react-native-elements';
 
 import CardExpense from '../../components/CardExpenses';
 import CardIncomes from  '../../components/CardIncomes';
-
+import valiadateAuth from "../../utils/validateAuthentication";
 import {  
   ContainerBtn,
   BackgroundBtnAdd,
@@ -31,18 +31,28 @@ export default function Main({ navigation }){
 
   async function showExpenses () {
 
-    const isAutenticated = await AsyncStorage.getItem("@LogonUser")
+    const isAutenticated = valiadateAuth();
     
-    if(isAutenticated.length != 0 ){
-      navigation.navigate('Expenses');
+    if(isAutenticated.sucess){
+      
+      alert(isAutenticated.error);
+      return navigation.navigate('Login');
     }
-    else{
-      alert("Houve um problema com a sua conexão, realize o login novamente!");
-      navigation.navigate('Login');
-    }
+    
+    navigation.navigate('Expenses');
+    
   }
 
   async function showIncomes () {
+    
+    const isAutenticated = valiadateAuth();
+
+    if(!isAutenticated.sucess){
+      
+      alert(isAutenticated.error);
+      return navigation.navigate('Login');     
+    }
+
     navigation.navigate('Incomes');
   }
 

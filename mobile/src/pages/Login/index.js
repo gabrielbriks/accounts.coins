@@ -30,36 +30,28 @@ export default function Login({ navigation }){
             try{
 
                 const response = await api.post('/signin', {
-                    params:{
                         login,
                         password
-                    }
                 });
-                /// AJUSTAR ESSE COMPORTAMENTO DO RESPONSE;
-                //console.log("response::: ", response.config.data);
-                // if(response.data.error){
-                //     console.log(response.data);
-                //     setLoading(false);
-                //     return alert(response.data.error);
-                    
-                // }
+                if(response.data.error){
+                    console.log(response.data);
+                    setLoading(false);
+                    return alert(response.data.error);                    
+                }
 
                
-                console.log(response);
-                // await AsyncStorage.setItem("@LogonUser", response.config.data);
-                // setLoading(false);
-                // navigation.navigate('Main');
-        
+                console.log(response.data);
+                await AsyncStorage.setItem("@UserData:id", response.data._id);
+                await AsyncStorage.setItem("@UserData:name", response.data.name);
+                setLoading(false);
+                navigation.navigate('Main');
 
-               
-                
-
-                // setLoading(false);
-                // navigation.navigate('Main');
             }
             catch(_err){
                 let error = "Houve um problema com o login, verifique suas credenciais!"
+                setLoading(false);
                 return alert(error);
+
             }
         }
         
