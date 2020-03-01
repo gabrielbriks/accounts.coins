@@ -13,9 +13,10 @@ const LogonController = require('./controllers/LogonController');
 routes.get('/despesasall', DespesasController.index);
 //Cadastrar Despesa
 routes.post('/despesa', DespesasController.store);
-
 //showDespesasFromUser
 routes.get('/despesas', DespesasController.showDespesasFromUser);
+//balanceExpensesFromUser
+routes.get('/saldodespesas',DespesasController.balanceExpensesFromUser);
 //-----------
 
 
@@ -27,6 +28,8 @@ routes.get('/receitasall', ReceitasController.index);
 routes.post('/receita', ReceitasController.store);
 //showReceitasFromUser
 routes.get('/receitas', ReceitasController.showReceitasFromUser);
+//BalanceIncomesFromUser
+routes.get('/saldoreceitas', ReceitasController.balanceIncomesFromUser);
 //-----------
 
 

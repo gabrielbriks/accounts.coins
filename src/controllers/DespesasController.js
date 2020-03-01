@@ -30,6 +30,21 @@ module.exports ={
         return res.json(despesas);
     },
 
+    async balanceExpensesFromUser(req, res){
+        const user = await UserSchema.findById(req.query.idUser);
+        const saldo = await DespesaSchema.aggregate([
+          { $match: { byRegistered : user._id } },// usamos $match para realizar uma simples igualdade.
+          {
+            $group: {
+              _id: user._id,
+              saldo: { $sum: '$value' },
+            }
+          }
+        ]);
+        
+        return res.json(saldo);
+      },
+
     // Atualizar : update
 
     // Excluir : destroy

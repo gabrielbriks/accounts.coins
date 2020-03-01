@@ -28,11 +28,28 @@ module.exports = {
     return res.json(receitas);
   },
 
+  async balanceIncomesFromUser(req, res){
+    const user = await UserSchema.findById(req.query.idUser);
+    const saldo = await ReceitasSchema.aggregate([
+      { $match: { byRegistered : user._id } },// usamos $match para realizar uma simples igualdade.
+      {
+        $group: {
+          _id: user._id,
+          saldo: { $sum: '$value' },
+        }
+      }
+    ]);
+    
+    return res.json(saldo);
+  },
+
   //Update 
 
   //Destroy
   async destroy(req, res){
     const receita = await ReceitasSchema.findOneAndRemove(req.query.id);
     return res.send();
-}
+}, 
+
+
 };
