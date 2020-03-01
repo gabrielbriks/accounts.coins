@@ -10,23 +10,23 @@ const LogonController = require('./controllers/LogonController');
 // ## Expenses
 
 //Listar Despesas
-routes.get('/despesas', DespesasController.index);
+routes.get('/despesasall', DespesasController.index);
 //Cadastrar Despesa
 routes.post('/despesa', DespesasController.store);
 
 //showDespesasFromUser
-routes.get('/despesasall', DespesasController.showDespesasFromUser);
+routes.get('/despesas', DespesasController.showDespesasFromUser);
 //-----------
 
 
 // ## Incomes
 
 // Listar Receitas
-routes.get('/receitas', ReceitasController.index);
+routes.get('/receitasall', ReceitasController.index);
 //Cadastrar Receitas
 routes.post('/receita', ReceitasController.store);
 //showReceitasFromUser
-routes.get('/receitasall', ReceitasController.showReceitasFromUser);
+routes.get('/receitas', ReceitasController.showReceitasFromUser);
 //-----------
 
 

@@ -22,12 +22,12 @@ module.exports ={
 
     //Buscar despesas por usuario
     async showDespesasFromUser(req, res){
-        const user = await UserSchema.findById(req.query.id);// id == req.login
+        
+        const user = await UserSchema.findById(req.query.idUser);// id == id user login
+        
         const despesas = await DespesaSchema.find({ "byRegistered": user._id }).sort({'createAt': 'descending'});
         
         return res.json(despesas);
-
-
     },
 
     // Atualizar : update
