@@ -1,5 +1,5 @@
 import React, { useState, useEffect }from 'react';
-import { View, Text, StyleSheet, ScrollView, ActivityIndicator, Modal } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator, Modal, AsyncStorage } from 'react-native';
 import { TextMask } from "react-native-masked-text";
 import styled from 'styled-components';
 import moment from 'moment';
@@ -17,18 +17,20 @@ export default function Expenses() {
   
  
   useEffect(() => {
-   //console.log(loading);
+
     async function loadExpensesByUser() {
-      const response = await api.get('/despesas');
+      const idUser = await AsyncStorage.getItem('@UserData:id');
+
+      const response = await api.get('/despesas',{
+        params: { idUser }
+      });
       
       setExpenses(response.data);
       setLoading(false);
-      //console.log('DENTRO', response.data);
     }
+
     loadExpensesByUser();
   }, []);
-
-  //console.log('STATE',expenses);
   
   return (
     <ScrollView>

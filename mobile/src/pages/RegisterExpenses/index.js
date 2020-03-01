@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, ScrollView, AsyncStorage} from "react-native";
 import { CheckBox } from "react-native-elements";
 import {TextInputMask}  from "react-native-masked-text";
 import styled from "styled-components";
@@ -7,27 +7,24 @@ import { RadioButton } from "react-native-paper";
 import { ListItem, Radio, Left, Right } from "native-base";
 
 import api from "../../services/api";
-// import { Container } from './styles';
 
 export default function RegisterExpenses({navigation}) {
-  const [moneyFiled, setMoneyfield] = useState("");
+  
   const [nameExpense, setNameExpense] = useState("");
   const [value, setValue] = useState("");
   const [optionCategory, setOptioncategory] = useState("");
   
 
   async function saveExpense(){
+    const byRegistered = await AsyncStorage.getItem('@UserData:id');
 
     const response = await api.post("/despesa",{
       name: nameExpense,
       value,
       category: optionCategory,
+      byRegistered,
     });
 
-    console.log(response.data);
-    //  console.log(nameExpense);
-    //  console.log(value);
-    //  console.log(optionCategory);
   
     if(!response.data){
         return alert("Houve um empecilho ao salvar sua Despesa, confira sua conexão e tente novamente!  :)");
@@ -35,7 +32,7 @@ export default function RegisterExpenses({navigation}) {
     setNameExpense("");
     setValue("");      
     alert("Salvo com Sucesso");
-    // navigation.navigate('Main');
+    // navigation.navigate('Main'); # AVALIAR EXPERIENCIAS DE USUARIO, PARA EXCLUIR OU ATIVAR
   }
 
 

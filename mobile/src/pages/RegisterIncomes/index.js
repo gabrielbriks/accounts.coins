@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, ScrollView, AsyncStorage } from "react-native";
 import { CheckBox } from "react-native-elements";
 import {TextInputMask}  from "react-native-masked-text";
 import styled from "styled-components";
 import { ListItem, Radio, Left, Right } from "native-base";
 
 import api from "../../services/api";
-// import { Container } from './styles';
+
 
 export default function RegisterIncomes() {
 
@@ -15,25 +15,24 @@ export default function RegisterIncomes() {
   const [value, setValue] = useState("");
  
   async function saveIncome(){
-
+    
+    const byRegistered = await AsyncStorage.getItem('@UserData:id');
+    
     const response = await api.post("/receita",{
       name: nameIncome,
       value,
       category: optionCategory,
+      byRegistered,
     });
 
-    //console.log(response.data);
-    //  console.log(nameIncome);
-    //  console.log(value);
-    //  console.log(optionCategory);
-  
+
     if(!response.data){
         return alert("Houve um empecilho ao salvar sua Despesa, confira sua conexão e tente novamente!  :)");
     }
     setNameIncome("");
     setValue("");      
     alert("Salvo com Sucesso");
-    //navigation.navigate('Main');
+    //navigation.navigate('Main'); # AVALIAR EXPERIENCIAS DE USUARIO, PARA EXCLUIR OU ATIVAR
   }
   
 

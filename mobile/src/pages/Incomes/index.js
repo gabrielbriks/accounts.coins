@@ -1,9 +1,9 @@
 import React, { useState ,useEffect } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, ActivityIndicator, Modal} from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, ActivityIndicator, Modal, AsyncStorage } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'
 import styled from "styled-components";
 import { Button} from 'react-native-elements';
-import { TextInputMask, TextMask }  from "react-native-masked-text";
+import { TextMask }  from "react-native-masked-text";
 
 import { Container, CardContainer, ContainerTitle, CardTitle, CardValue } from './styles';
 import api from "../../services/api";
@@ -15,11 +15,16 @@ export default function Incomes() {
   useEffect(() => {
 
     async function loadIncomesByUser() {
-      const response = await api.get('/receitas');
+      const idUser = await AsyncStorage.getItem('@UserData:id');
+
+      const response = await api.get('/receitas', {
+        params:{
+          idUser
+        }
+      });
   
       setIncomes(response.data);
       setLoading(false);
-      
     }
     loadIncomesByUser();
   },[]);
