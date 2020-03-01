@@ -1,8 +1,33 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React,{ useEffect, useState } from 'react';
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import styled from 'styled-components';
 
+import api from "../../services/api";
+
 export default function CardIncomes(){
+  
+  const [balance, setBalance] = useState(0);
+
+  useEffect(() =>{
+    /*  Saldo Receitas */
+    async function IncomesBalance() {
+      
+      const idUser = await AsyncStorage.getItem('@UserData:id');
+
+      const response = await api.get('/saldoreceitas', {
+        params:{
+          idUser
+        }
+      });
+      const { _id, saldo } = response.data[0];
+      setBalance(saldo);
+      
+    }
+    IncomesBalance();
+  },[]);
+  
+ 
+
   return (
     <>
       <Container>
@@ -13,7 +38,7 @@ export default function CardIncomes(){
           <Line />
           <CardContent>
             <Title>Saldo Receitas</Title>
-            <Description>R$ 6.723,39</Description>
+            <Description>R$ {balance}</Description>
           </CardContent>
         </Card>
       </Container>
