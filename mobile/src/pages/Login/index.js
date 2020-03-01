@@ -34,13 +34,12 @@ export default function Login({ navigation }){
                         password
                 });
                 if(response.data.error){
-                    console.log(response.data);
+                  
                     setLoading(false);
                     return alert(response.data.error);                    
                 }
 
-               
-                console.log(response.data);
+             
                 await AsyncStorage.setItem("@UserData:id", response.data._id);
                 await AsyncStorage.setItem("@UserData:name", response.data.name);
                 setLoading(false);
