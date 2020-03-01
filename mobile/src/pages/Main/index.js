@@ -33,7 +33,7 @@ export default function Main({ navigation }){
 
     const isAutenticated = valiadateAuth();
     
-    if(isAutenticated.sucess){
+    if(!isAutenticated.sucess){
       
       alert(isAutenticated.error);
       return navigation.navigate('Login');
@@ -48,7 +48,7 @@ export default function Main({ navigation }){
     const isAutenticated = valiadateAuth();
 
     if(!isAutenticated.sucess){
-      
+
       alert(isAutenticated.error);
       return navigation.navigate('Login');     
     }
