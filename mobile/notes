@@ -78,3 +78,9 @@ Comands de algumas Dependencias:
 
 - Configurando ESLint e prettier no react native
     Link: https://medium.com/@sutil.edu/configura%C3%A7%C3%B5es-do-eslint-com-prettier-para-react-native-458cb098c3c8
+
+    yarn add eslint -D
+    yarn eslint --init
+ - Depois de responder as perguntas, diga nao para instalar 
+ os packages com npm, e instale eles com o yarn:
+    - yarn add prettier eslint-config-prettier eslint-plugin-prettier babel-eslint -D
