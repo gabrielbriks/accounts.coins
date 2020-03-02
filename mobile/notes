@@ -1,44 +1,62 @@
 ## Dependencias utilizadas
 
-yarn add react-navigation
-yarn add react-native-gesture-handler
-yarn add styled-components
-yarn add axios
-yarn add react-native-vector-icons
-expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
-yarn add react-navigation-stack
+    "@react-native-community/async-storage": "^1.8.1",
+    "@react-native-community/masked-view": "0.1.5",
+    "@react-navigation/stack": "^5.0.6",
+    "axios": "^0.19.2",
+    "expo": "~36.0.0",
+    "moment": "^2.24.0",
+    "react-native-elements": "^1.2.7",
+    "react-native-gesture-handler": "~1.5.0",
+    "react-native-masked-text": "^1.13.0",
+    "react-native-modal": "^11.5.4",
+    "react-native-paper": "^3.6.0",
+    "react-native-reanimated": "~1.4.0",
+    "react-native-svg": "9.13.3",
+    "react-native-vector-icons": "^6.6.0",
+    "react-navigation": "^4.1.1",
+    "react-navigation-stack": "^2.1.1",
+    "styled-components": "^5.0.1"
 
-- Using library react native elements 
-    - Essa lib possui uma dependencia chamada "react-native-vector-icons"
-    Link: https://react-native-elements.github.io/react-native-elements/docs/checkbox.html
-    - Install:
-        Comand: yarn add react-native-vector-icons
-        - Caso nenessário realize o link: react-native link react-native-vector-icons 
+Comands de algumas Dependencias:
+    yarn add react-navigation
+    yarn add react-native-gesture-handler
+    yarn add styled-components
+    yarn add axios
+    yarn add react-native-vector-icons
+    expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+    yarn add react-navigation-stack
 
-- Using library react-native-masked-text for mask in inputs
-    Link : https://github.com/benhurott/react-native-masked-text
-    - Install:
-        Comand: yarn add react-native-masked-text 
 
-- Using library momentJs for format dates 
-    Link: https://momentjs.com/
-    -Install
-        Comand: yarn add moment
+# Detalhes de utilização de algumas libs:
 
-- Using library date-fns for format dates 
-    Link: https://blog.rocketseat.com.br/datas-e-horarios-javascript-date-fns-moment/
-    Install: 
-        yarn add date-fns
-        yarn add date-fns-tz >> time zones       
+    - Using library react native elements:
+        - Utilizei essa lib para utilizar alguns componetes, como checkbox, buttons e/ oiu etc.
+        - Essa lib possui uma dependência chamada "react-native-vector-icons"
+        Link: https://react-native-elements.github.io/react-native-elements/docs/checkbox.html
+        - Install:
+            Comand: yarn add react-native-vector-icons
+            - Caso nenessário realize o link: react-native link react-native-vector-icons 
 
+    - Using library react-native-masked-text for mask in inputs
+        Link : https://github.com/benhurott/react-native-masked-text
+        - Install:
+            Comand: yarn add react-native-masked-text 
+
+    - Using library momentJs for format nice of presentation for dates
+        Link: https://momentjs.com/
+        -Install
+            Comand: yarn add moment
+
+    
 # Implementando AsyncStorage na aplicação
     Install:
         Comand : yarn add @react-native-community/async-storage
-        
+        AsyncStorage: Para entender a definição do mesmo basta acessar o seguinte link >> https://facebook.github.io/react-native/docs/asyncstorage
 
-#Esclarecimentos:
 
-    AsyncStorage: Para entender a definição do mesmo basta acessar o seguinte link >> https://facebook.github.io/react-native/docs/asyncstorage
+
+    
 
 
 #Dicas:
