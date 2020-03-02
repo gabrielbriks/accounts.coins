@@ -31,7 +31,7 @@ Comands de algumas Dependencias:
 # Detalhes de utilização de algumas libs:
 
     - Using library react native elements:
-        - Utilizei essa lib para utilizar alguns componetes, como checkbox, buttons e/ oiu etc.
+        - Utilizei essa lib para facilitar o uso de alguns componetes, como checkbox, buttons e/ ou etc.
         - Essa lib possui uma dependência chamada "react-native-vector-icons"
         Link: https://react-native-elements.github.io/react-native-elements/docs/checkbox.html
         - Install:
@@ -39,6 +39,7 @@ Comands de algumas Dependencias:
             - Caso nenessário realize o link: react-native link react-native-vector-icons 
 
     - Using library react-native-masked-text for mask in inputs
+        - Utilizei essa lib para adicionar formatações/mascaras de valores(R$) que vao e vem do mongodb
         Link : https://github.com/benhurott/react-native-masked-text
         - Install:
             Comand: yarn add react-native-masked-text 
@@ -54,15 +55,25 @@ Comands de algumas Dependencias:
         Comand : yarn add @react-native-community/async-storage
         AsyncStorage: Para entender a definição do mesmo basta acessar o seguinte link >> https://facebook.github.io/react-native/docs/asyncstorage
 
+#Implementação de padronização do código:
+    Styles( ainda em processo de análise ):
+        Utilizaremos o "styleLint" padronização de styles de toda a nossa aplicação;
+        Para isso primeiramente iremos adicionar ao VS CODE a extensão referente:
+            name: styleLint
+        Em nosso caso utilizaremos uma configuração para tratar os nossos StyleSheet e também o StyledComponents.
+        Links para entender o processo:
+            - https://github.com/styled-components/stylelint-processor-styled-components
 
+    Code:
+        
 
     
 
 
 #Dicas:
 
--Buscar Maior Variedades de Icons
-    - Neste link, e possivel buscar icons em todas as lib do vector-icons
+- Buscar Maior Variedades de Icons
+    - Neste link, e possivel buscar icons em todas as lib disponíveis no vector-icons
         Link: https://oblador.github.io/react-native-vector-icons/
 
     
