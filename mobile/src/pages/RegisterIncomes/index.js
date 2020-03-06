@@ -32,7 +32,7 @@ export default function RegisterIncomes({ navigation }) {
     });
 
     if (!response.data) {
-      Alert.alert(
+      return Alert.alert(
         'OPPS!',
         'Houve um empecilho ao salvar sua Receita, confira sua conexão e tente novamente!  :)',
         [
@@ -41,7 +41,6 @@ export default function RegisterIncomes({ navigation }) {
           },
         ]
       );
-      return Alert;
     }
     setNameIncome('');
     setValue('');
@@ -53,7 +52,6 @@ export default function RegisterIncomes({ navigation }) {
           navigation.navigate('Main', { newRegister: response.data }),
       },
     ]);
-    Alert;
   }
 
   return (

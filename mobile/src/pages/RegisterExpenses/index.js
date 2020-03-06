@@ -33,7 +33,7 @@ export default function RegisterExpenses({ navigation }) {
     });
 
     if (!response.data) {
-      Alert.alert(
+      return Alert.alert(
         'OPPS!',
         'Houve um empecilho ao salvar sua Despesa, confira sua conexão e tente novamente!  :)',
         [
@@ -42,7 +42,6 @@ export default function RegisterExpenses({ navigation }) {
           },
         ]
       );
-      return Alert;
     }
     setNameExpense('');
     setValue('');
@@ -54,7 +53,6 @@ export default function RegisterExpenses({ navigation }) {
           navigation.navigate('Main', { newRegister: response.data }),
       },
     ]);
-    Alert;
   }
 
   return (
