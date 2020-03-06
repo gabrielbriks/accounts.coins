@@ -35,7 +35,7 @@ import {
 
 export default function Main({ navigation }) {
   const [modalIsVisible, setModalIsVisible] = useState(false);
-  console.log(navigation.state.params);
+  // console.log(navigation.state.params);
   async function showExpenses() {
     const isAutenticated = valiadateAuth();
 

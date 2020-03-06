@@ -84,3 +84,9 @@ Comands de algumas Dependencias:
  - Depois de responder as perguntas, diga nao para instalar 
  os packages com npm, e instale eles com o yarn:
     - yarn add prettier eslint-config-prettier eslint-plugin-prettier babel-eslint -D
+
+
+
+Inssue #1 : 
+    - Erro ao atualizar saldos dos cards da page Home;
+        Date Resolution: 06-03-2020

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   AsyncStorage,
+  Alert,
 } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import { TextInputMask } from 'react-native-masked-text';
@@ -32,7 +33,7 @@ export default function RegisterExpenses({ navigation }) {
     });
 
     if (!response.data) {
-      return Alert.alert(
+      Alert.alert(
         'OPPS!',
         'Houve um empecilho ao salvar sua Despesa, confira sua conexão e tente novamente!  :)',
         [
@@ -41,9 +42,11 @@ export default function RegisterExpenses({ navigation }) {
           },
         ]
       );
+      return Alert;
     }
     setNameExpense('');
     setValue('');
+
     Alert.alert('SUCESSO', 'Registro salvo com sucesso!', [
       {
         text: 'OK',
@@ -51,8 +54,7 @@ export default function RegisterExpenses({ navigation }) {
           navigation.navigate('Main', { newRegister: response.data }),
       },
     ]);
-    // alert('Salvo com Sucesso');
-    // navigation.navigate('Main', { newRegister: response.data });
+    Alert;
   }
 
   return (
