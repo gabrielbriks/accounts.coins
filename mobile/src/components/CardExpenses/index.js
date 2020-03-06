@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, AsyncStorage} from 'react-native';
-import { TextMask } from "react-native-masked-text";
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
+import { TextMask } from 'react-native-masked-text';
 
-import api from "../../services/api";
-import { Container, Card, CardContent, CardContentTitle, CardHeader, Line, CardTitle } from "./styles";
+import api from '../../services/api';
+import {
+  Container,
+  Card,
+  CardContent,
+  CardContentTitle,
+  CardHeader,
+  Line,
+  CardTitle,
+} from './styles';
 
-export default function CardExpenses(){
-
+export default function CardExpenses(prop) {
   const [balance, setBalance] = useState(0);
-
-  useEffect(() =>{
+  const { newRegister } = prop;
+  useEffect(() => {
     /*  Saldo Receitas */
     async function ExpensesBalance() {
-      
       const idUser = await AsyncStorage.getItem('@UserData:id');
 
       const response = await api.get('/saldodespesas', {
-        params:{
-          idUser
-        }
+        params: {
+          idUser,
+        },
       });
 
       const { _id, saldo } = response.data[0];
@@ -26,15 +32,15 @@ export default function CardExpenses(){
     }
 
     ExpensesBalance();
-  },[]);
+  }, [newRegister]);
 
   return (
     <>
       <Container>
-      <Card>
+        <Card>
           <CardHeader>
-            <CardTitle>Despesas</CardTitle>           
-          </CardHeader> 
+            <CardTitle>Despesas</CardTitle>
+          </CardHeader>
           <Line />
           <CardContent>
             <CardContentTitle>Saldo Despesas</CardContentTitle>
@@ -44,16 +50,14 @@ export default function CardExpenses(){
       </Container>
     </>
   );
-
 }
 
 const styles = StyleSheet.create({
   saldos: {
     fontSize: 32,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "#EF3A3A",
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#EF3A3A',
     marginTop: 3,
-  }
+  },
 });
-
