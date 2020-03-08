@@ -71,11 +71,11 @@ export default function Main({ navigation }) {
         </MainHeader>
 
         <TouchableOpacity onPress={showExpenses}>
-          <CardExpense newRegister={navigation.state.params} />
+          <CardExpense newRegisterAlteration={navigation.state.params} />
         </TouchableOpacity>
 
         <TouchableOpacity onPress={showIncomes} style={{ marginBottom: 70 }}>
-          <CardIncomes newRegister={navigation.state.params} />
+          <CardIncomes newRegisterAlteration={navigation.state.params} />
         </TouchableOpacity>
 
         <Modal isVisible={modalIsVisible}>

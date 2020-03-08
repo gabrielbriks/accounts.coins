@@ -15,7 +15,7 @@ import {
 } from './styles';
 
 export default function CardIncomes(prop) {
-  const { newRegister } = prop;
+  const { newRegisterAlteration } = prop;
   const [balance, setBalance] = useState(0);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function CardIncomes(prop) {
       setBalance(saldo);
     }
     IncomesBalance();
-  }, [newRegister]);
+  }, [newRegisterAlteration]);
 
   return (
     <>

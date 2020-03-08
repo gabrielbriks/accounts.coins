@@ -15,7 +15,7 @@ import {
 
 export default function CardExpenses(prop) {
   const [balance, setBalance] = useState(0);
-  const { newRegister } = prop;
+  const { newRegisterAlteration } = prop;
   useEffect(() => {
     /*  Saldo Receitas */
     async function ExpensesBalance() {
@@ -32,7 +32,7 @@ export default function CardExpenses(prop) {
     }
 
     ExpensesBalance();
-  }, [newRegister]);
+  }, [newRegisterAlteration]);
 
   return (
     <>

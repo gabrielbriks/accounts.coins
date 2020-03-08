@@ -50,7 +50,7 @@ export default function RegisterExpenses({ navigation }) {
       {
         text: 'OK',
         onPress: () =>
-          navigation.navigate('Main', { newRegister: response.data }),
+          navigation.navigate('Main', { newRegisterAlteration: response.data }),
       },
     ]);
   }
