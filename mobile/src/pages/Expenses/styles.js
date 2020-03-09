@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
 
 export const Container = styled.View`
@@ -8,7 +8,7 @@ export const Container = styled.View`
   margin-top: 38px;
 `;
 
-export const ListItem = styled.View`
+export const ListItem = styled.TouchableOpacity`
   height: 85px;
   width: 100%;
   margin-top: 8px;
@@ -29,11 +29,11 @@ export const ItemCategory = styled.Text`
   font-weight: bold;
   margin-left: 10px;
   color: #000;
-  opacity: 0.6;  
+  opacity: 0.6;
 `;
 
 export const DescriptionItem = styled.Text`
-  font-size: 18px;  
+  font-size: 18px;
   font-weight: 300;
   margin-left: 30px;
   color: #000;
@@ -41,7 +41,7 @@ export const DescriptionItem = styled.Text`
 `;
 
 export const ItemValue = styled.Text`
-  font-size: 18px;  
+  font-size: 18px;
   font-weight: 300;
   margin-left: 30px;
   color: #000;
