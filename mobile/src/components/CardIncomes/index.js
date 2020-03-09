@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { TextMask } from 'react-native-masked-text';
 
 import api from '../../services/api';
+import checkBalance from '../../utils/checkBalances';
 import {
   Container,
   Card,
@@ -21,6 +22,7 @@ export default function CardIncomes(prop) {
   useEffect(() => {
     /*  Saldo Receitas */
     async function IncomesBalance() {
+      console.log('entrei CArd Incomes');
       const idUser = await AsyncStorage.getItem('@UserData:id');
 
       const response = await api.get('/saldoreceitas', {
@@ -29,7 +31,9 @@ export default function CardIncomes(prop) {
         },
       });
       const { _id, saldo } = response.data[0];
-      setBalance(saldo);
+      const saldoChecked = await checkBalance(saldo);
+      console.log(saldoChecked);
+      setBalance(saldoChecked);
     }
     IncomesBalance();
   }, [newRegisterAlteration]);
