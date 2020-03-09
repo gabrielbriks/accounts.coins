@@ -35,6 +35,39 @@ export default function RegisterExpenses({ navigation }) {
     }
   }, [navigation.state.params]);
 
+  async function saveExpense() {
+    const byRegistered = await AsyncStorage.getItem('@UserData:id');
+
+    const response = await api.post('/despesa', {
+      name: nameExpense,
+      value,
+      category: optionCategory,
+      byRegistered,
+    });
+
+    if (!response.data) {
+      return Alert.alert(
+        'OPPS!',
+        'Houve um empecilho ao salvar sua Despesa, confira sua conexão e tente novamente!  :)',
+        [
+          {
+            text: 'OK',
+          },
+        ]
+      );
+    }
+    setNameExpense('');
+    setValue('');
+
+    Alert.alert('SUCESSO', 'Registro salvo com sucesso!', [
+      {
+        text: 'OK',
+        onPress: () =>
+          navigation.navigate('Main', { newRegisterAlteration: response.data }),
+      },
+    ]);
+  }
+
   async function updateExpense() {
     return Alert.alert('SUCESSO', 'Registro salvo com sucesso!', [
       {
