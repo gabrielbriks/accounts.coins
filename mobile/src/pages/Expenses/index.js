@@ -59,7 +59,10 @@ export default function Expenses({ navigation }) {
           <ListItem
             key={expense._id}
             onPress={() => {
-              navigation.navigate('RegisterExpenses', { delete: true });
+              navigation.navigate('RegisterExpenses', {
+                delete: true,
+                expense,
+              });
             }}
           >
             <ItemDateExpense>

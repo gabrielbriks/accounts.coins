@@ -25,20 +25,30 @@ export default function RegisterExpenses({ navigation }) {
 
   useEffect(() => {
     if (navigation.state.params) {
+      const { name, value, category } = navigation.state.params.expense;
       console.log(navigation.state.params.delete);
+      console.log(navigation.state.params.expense);
       setShowBtnDelete(navigation.state.params.delete);
+      setNameExpense(name);
+      setValue(value);
+      setOptioncategory(category);
     }
   }, [navigation.state.params]);
 
-  async function saveExpense() {
-    const byRegistered = await AsyncStorage.getItem('@UserData:id');
+  async function updateExpense() {
+    return Alert.alert('SUCESSO', 'Registro salvo com sucesso!', [
+      {
+        text: 'OK',
+        onPress: () => navigation.navigate('Main'),
+      },
+    ]);
 
-    const response = await api.post('/despesa', {
-      name: nameExpense,
-      value,
-      category: optionCategory,
-      byRegistered,
-    });
+    // const response = await api.put('/despesa', {
+    //   name: nameExpense,
+    //   value,
+    //   category: optionCategory,
+    //   //byRegistered,
+    // });
 
     if (!response.data) {
       return Alert.alert(
@@ -176,7 +186,7 @@ export default function RegisterExpenses({ navigation }) {
             title="Salvar"
             style={styles.button}
             onPress={() => {
-              saveExpense();
+              showBtnDelete ? updateExpense() : saveExpense();
             }}
           >
             <ButtonText>Salvar</ButtonText>
