@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -21,6 +21,14 @@ export default function RegisterExpenses({ navigation }) {
   const [nameExpense, setNameExpense] = useState('');
   const [value, setValue] = useState('');
   const [optionCategory, setOptioncategory] = useState('');
+  const [showBtnDelete, setShowBtnDelete] = useState(false);
+
+  useEffect(() => {
+    if (navigation.state.params) {
+      console.log(navigation.state.params.delete);
+      setShowBtnDelete(navigation.state.params.delete);
+    }
+  }, [navigation.state.params]);
 
   async function saveExpense() {
     const byRegistered = await AsyncStorage.getItem('@UserData:id');
@@ -51,6 +59,14 @@ export default function RegisterExpenses({ navigation }) {
         text: 'OK',
         onPress: () =>
           navigation.navigate('Main', { newRegisterAlteration: response.data }),
+      },
+    ]);
+  }
+
+  async function deleteExpense() {
+    Alert.alert('deletar', 'apertou o Excluir', [
+      {
+        text: 'OK',
       },
     ]);
   }
@@ -143,6 +159,19 @@ export default function RegisterExpenses({ navigation }) {
             </Right>
           </ListItem>
 
+          {!showBtnDelete ? null : (
+            <TouchableOpacity
+              title="Excluir"
+              style={styles.buttonDelete}
+              onPress={() => {
+                deleteExpense();
+              }}
+              // disabled={!showBtnDelete}
+            >
+              <ButtonText>Excluir</ButtonText>
+            </TouchableOpacity>
+          )}
+
           <TouchableOpacity
             title="Salvar"
             style={styles.button}
@@ -191,6 +220,16 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#333',
+    width: 100,
+    height: 37,
+    marginTop: 35,
+    borderRadius: 25,
+    textAlign: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  buttonDelete: {
+    backgroundColor: '#f00',
     width: 100,
     height: 37,
     marginTop: 35,
