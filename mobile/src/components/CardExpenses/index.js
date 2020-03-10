@@ -28,8 +28,8 @@ export default function CardExpenses(prop) {
       });
 
       const { _id, saldo } = response.data[0];
-      await AsyncStorage.setItem('@BalanceExpense:value', saldo);
       setBalance(saldo);
+      await AsyncStorage.setItem('@BalanceExpense:value', saldo.toString());
     }
 
     ExpensesBalance();
