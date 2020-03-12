@@ -18,9 +18,9 @@ routes.get("/despesas", DespesasController.showDespesasFromUser);
 routes.get("/saldodespesas", DespesasController.balanceExpensesFromUser);
 
 //Update
-routes.put("/despesaupdate", DespesaController.update);
+routes.put("/despesaupdate", DespesasController.update);
 //Delete
-routes.delete("/despesadestroy", DespesaController.destroy);
+routes.delete("/despesadestroy", DespesasController.destroy);
 //-----------
 
 // ## Incomes
