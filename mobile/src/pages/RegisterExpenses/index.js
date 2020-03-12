@@ -21,7 +21,7 @@ export default function RegisterExpenses({ navigation }) {
   const [nameExpense, setNameExpense] = useState('');
   const [value, setValue] = useState('');
   const [optionCategory, setOptioncategory] = useState('');
-  const [showBtnDelete, setShowBtnDelete] = useState(false);
+  const [showBtnDelete, setShowBtnDelete] = useState('');
   const [idExpense, setIdExpense] = useState('');
 
   useEffect(() => {
@@ -29,11 +29,15 @@ export default function RegisterExpenses({ navigation }) {
       const { _id, name, value, category } = navigation.state.params.expense;
       // console.log(navigation.state.params.delete);
       // console.log(navigation.state.params.expense);
-      setShowBtnDelete(navigation.state.params.delete);
+      let wasDelete = navigation.state.params.delete;
+      console.log(wasDelete);
+      setShowBtnDelete(wasDelete);
       setIdExpense(_id);
       setNameExpense(name);
       setValue(value);
       setOptioncategory(category);
+
+      console.log(showBtnDelete);
     }
   }, [navigation.state.params]);
 
@@ -77,7 +81,7 @@ export default function RegisterExpenses({ navigation }) {
     //     onPress: () => navigation.navigate('Main'),
     //   },
     // ]);
-
+    console.log(showBtnDelete);
     const response = await api.put('/despesa', {
       params: {
         id,
