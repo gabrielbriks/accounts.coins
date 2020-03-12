@@ -22,13 +22,15 @@ export default function RegisterExpenses({ navigation }) {
   const [value, setValue] = useState('');
   const [optionCategory, setOptioncategory] = useState('');
   const [showBtnDelete, setShowBtnDelete] = useState(false);
+  const [idExpense, setIdExpense] = useState('');
 
   useEffect(() => {
     if (navigation.state.params) {
-      const { name, value, category } = navigation.state.params.expense;
-      console.log(navigation.state.params.delete);
-      console.log(navigation.state.params.expense);
+      const { _id, name, value, category } = navigation.state.params.expense;
+      // console.log(navigation.state.params.delete);
+      // console.log(navigation.state.params.expense);
       setShowBtnDelete(navigation.state.params.delete);
+      setIdExpense(_id);
       setNameExpense(name);
       setValue(value);
       setOptioncategory(category);
@@ -68,20 +70,23 @@ export default function RegisterExpenses({ navigation }) {
     ]);
   }
 
-  async function updateExpense() {
-    return Alert.alert('SUCESSO', 'Registro salvo com sucesso!', [
-      {
-        text: 'OK',
-        onPress: () => navigation.navigate('Main'),
-      },
-    ]);
+  async function updateExpense(id) {
+    // return Alert.alert('SUCESSO', 'Registro salvo com sucesso!', [
+    //   {
+    //     text: 'OK',
+    //     onPress: () => navigation.navigate('Main'),
+    //   },
+    // ]);
 
-    // const response = await api.put('/despesa', {
-    //   name: nameExpense,
-    //   value,
-    //   category: optionCategory,
-    //   //byRegistered,
-    // });
+    const response = await api.put('/despesa', {
+      params: {
+        id,
+      },
+      name: nameExpense,
+      value,
+      category: optionCategory,
+      //byRegistered,
+    });
 
     if (!response.data) {
       return Alert.alert(
@@ -106,12 +111,41 @@ export default function RegisterExpenses({ navigation }) {
     ]);
   }
 
-  async function deleteExpense() {
-    Alert.alert('deletar', 'apertou o Excluir', [
+  async function deleteExpense(id) {
+    const response = api.delete('/receitadestroy', {
+      params: {
+        id,
+      },
+    });
+
+    if (!response.data) {
+      return Alert.alert(
+        'OPPS!',
+        'Houve um empecilho ao excluir sua Despesa, confira sua conexão e tente novamente!  :)',
+        [
+          {
+            text: 'OK',
+          },
+        ]
+      );
+    }
+
+    setNameExpense('');
+    setValue('');
+
+    Alert.alert('SUCESSO', 'Registro salvo com sucesso!', [
       {
         text: 'OK',
+        onPress: () =>
+          navigation.navigate('Main', { newRegisterAlteration: response.data }),
       },
     ]);
+
+    // return Alert.alert('deletar', 'apertou o Excluir', [
+    //   {
+    //     text: 'OK',
+    //   },
+    // ]);
   }
 
   return (
@@ -219,7 +253,7 @@ export default function RegisterExpenses({ navigation }) {
             title="Salvar"
             style={styles.button}
             onPress={() => {
-              showBtnDelete ? updateExpense() : saveExpense();
+              showBtnDelete ? updateExpense(idExpense) : saveExpense();
             }}
           >
             <ButtonText>Salvar</ButtonText>
