@@ -82,7 +82,8 @@ export default function RegisterExpenses({ navigation }) {
     //   },
     // ]);
     console.log(showBtnDelete);
-    const response = await api.put('/despesa', {
+    console.log(id);
+    const response = await api.post('/despesaupdate', {
       params: {
         id,
       },
@@ -91,7 +92,7 @@ export default function RegisterExpenses({ navigation }) {
       category: optionCategory,
       //byRegistered,
     });
-
+    // console.log(response);
     if (!response.data) {
       return Alert.alert(
         'OPPS!',
