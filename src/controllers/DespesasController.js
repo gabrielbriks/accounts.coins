@@ -53,7 +53,7 @@ module.exports = {
         o retorno com os dados antigos
     */
     const despesa = await DespesaSchema.findByIdAndUpdate(
-      req.params.id,
+      req.query.id,
       req.body,
       { new: true }
     );
