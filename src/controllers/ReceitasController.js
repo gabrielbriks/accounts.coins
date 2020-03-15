@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const moment = require("moment");
 
 // Incomes
 const ReceitasSchema = require("../models/Receita");
@@ -21,9 +22,18 @@ module.exports = {
 
   //Buscar receitas por usuario
   async showReceitasFromUser(req, res) {
+    let currentMonth = moment().startOf("month");
+    let endMonth = moment(currentMonth).endOf("month");
+
     const user = await UserSchema.findById(req.query.idUser);
 
-    const receitas = await ReceitasSchema.find({ byRegistered: user.id }).sort({
+    const receitas = await ReceitasSchema.find({
+      byRegistered: user.id,
+      createAt: {
+        $gte: currentMonth._d,
+        $lt: endMonth._d
+      }
+    }).sort({
       createAt: "descending"
     });
 
@@ -31,9 +41,21 @@ module.exports = {
   },
 
   async balanceIncomesFromUser(req, res) {
+    let currentMonth = moment().startOf("month");
+    let endMonth = moment(currentMonth).endOf("month");
+
     const user = await UserSchema.findById(req.query.idUser);
     const saldo = await ReceitasSchema.aggregate([
-      { $match: { byRegistered: user._id } }, // usamos $match para realizar uma simples igualdade.
+      {
+        $match: {
+          // usamos $match para realizar uma simples igualdade.
+          byRegistered: user._id,
+          createAt: {
+            $gte: currentMonth._d,
+            $lte: endMonth._d
+          }
+        }
+      },
       {
         $group: {
           _id: user._id,

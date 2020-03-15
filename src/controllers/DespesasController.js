@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const moment = require("moment");
 
 const DespesaSchema = require("../models/Despesa");
 const UserSchema = require("../models/User");
@@ -6,7 +7,15 @@ const UserSchema = require("../models/User");
 module.exports = {
   // Listar : Index
   async index(req, res) {
-    const despesas = await DespesaSchema.find().sort({
+    let currentMonth = moment().startOf("month");
+    let endMonth = moment(currentMonth).endOf("month");
+
+    const despesas = await DespesaSchema.find({
+      createAt: {
+        $gte: Date.parse(currentMonth._d),
+        $lt: Date.parse(endMonth._d)
+      }
+    }).sort({
       createAt: "descending"
     });
     return res.json(despesas);
@@ -22,9 +31,18 @@ module.exports = {
 
   //Buscar despesas por usuario
   async showDespesasFromUser(req, res) {
-    const user = await UserSchema.findById(req.query.idUser); // id == id user login
+    let currentMonth = moment().startOf("month");
+    let endMonth = moment(currentMonth).endOf("month");
 
-    const despesas = await DespesaSchema.find({ byRegistered: user._id }).sort({
+    const user = await UserSchema.findById(req.query.idUser);
+
+    const despesas = await DespesaSchema.find({
+      byRegistered: user._id,
+      createAt: {
+        $gte: currentMonth._d,
+        $lt: endMonth._d
+      }
+    }).sort({
       createAt: "descending"
     });
 
@@ -32,9 +50,22 @@ module.exports = {
   },
 
   async balanceExpensesFromUser(req, res) {
+    let currentMonth = moment().startOf("month");
+    let endMonth = moment(currentMonth).endOf("month");
+    console.log(currentMonth._d);
+    console.log(endMonth._d);
     const user = await UserSchema.findById(req.query.idUser);
     const saldo = await DespesaSchema.aggregate([
-      { $match: { byRegistered: user._id } }, // usamos $match para realizar uma simples igualdade.
+      {
+        $match: {
+          // usamos $match para realizar uma simples igualdade.
+          byRegistered: user._id,
+          createAt: {
+            $gte: currentMonth._d,
+            $lte: endMonth._d
+          }
+        }
+      },
       {
         $group: {
           _id: user._id,
@@ -42,7 +73,7 @@ module.exports = {
         }
       }
     ]);
-
+    console.log(saldo);
     return res.json(saldo);
   },
 
