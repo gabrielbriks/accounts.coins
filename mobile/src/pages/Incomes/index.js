@@ -43,26 +43,6 @@ export default function Incomes({ navigation }) {
     loadIncomesByUser();
   }, []);
 
-  async function DeleteIncome(idIncome) {
-    console.log(idIncome);
-    const response = await api.delete(`/receitadestroy/${idIncome}`);
-
-    if (response.data.error) {
-      return Alert.alert('OPPS!', response.data.error, [
-        {
-          text: 'OK',
-        },
-      ]);
-    }
-    console.log(response.data);
-    Alert.alert('SUCESS!', 'A Receita foi excluída com sucesso!', [
-      {
-        text: 'OK',
-      },
-    ]);
-    navigation.navigate('Main', { newRegisterAlteration: response.data });
-  }
-
   return (
     <ScrollView style={styles.container}>
       <Modal visible={loading} transparent={true} animationType={'none'}>
@@ -76,25 +56,35 @@ export default function Incomes({ navigation }) {
       </Modal>
       <Container>
         {incomes.map(income => (
-          <CardContainer key={income._id}>
-            <ContainerTitle>
-              <TouchableOpacity
-                style={styles.icons}
-                onPress={() => {
-                  DeleteIncome(income._id);
-                }}
-              >
-                <Icon name="delete" size={38} color="#ce001d" />
-              </TouchableOpacity>
-              <CardTitle>{income.name}</CardTitle>
-            </ContainerTitle>
-            {/* <CardValue>R$ {income.value}</CardValue> */}
-            <TextMask
-              type="money"
-              value={income.value}
-              style={styles.cardValueMask}
-            />
-          </CardContainer>
+          <TouchableOpacity
+            key={income._id}
+            onPress={() => {
+              navigation.navigate('RegisterIncomes', {
+                delete: true,
+                income,
+              });
+            }}
+          >
+            <CardContainer>
+              <ContainerTitle>
+                <TouchableOpacity
+                  style={styles.icons}
+                  onPress={() => {
+                    DeleteIncome(income._id);
+                  }}
+                >
+                  <Icon name="delete" size={38} color="#ce001d" />
+                </TouchableOpacity>
+                <CardTitle>{income.name}</CardTitle>
+              </ContainerTitle>
+              {/* <CardValue>R$ {income.value}</CardValue> */}
+              <TextMask
+                type="money"
+                value={income.value}
+                style={styles.cardValueMask}
+              />
+            </CardContainer>
+          </TouchableOpacity>
         ))}
       </Container>
     </ScrollView>
@@ -126,6 +116,8 @@ const styles = StyleSheet.create({
     color: '#333',
     fontWeight: 'bold',
     textAlign: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
     marginTop: 18,
   },
 });

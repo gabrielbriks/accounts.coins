@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -20,8 +20,26 @@ export default function RegisterIncomes({ navigation }) {
   const [nameIncome, setNameIncome] = useState('');
   const [optionCategory, setOptionCategory] = useState('');
   const [value, setValue] = useState('');
+  const [showBtnDelete, setShowBtnDelete] = useState('');
+  const [idIncome, setIdIncome] = useState('');
 
-  async function saveIncome() {
+  useEffect(() => {
+    if (navigation.state.params) {
+      const { _id, name, value, category } = navigation.state.params.income;
+      let wasDelete = navigation.state.params.delete;
+      console.log(navigation.state.params.income);
+      console.log(wasDelete);
+
+      setIdIncome(_id);
+      setNameIncome(name);
+      setValue(value);
+      setOptionCategory(category);
+      setShowBtnDelete(wasDelete);
+      console.log(idIncome);
+    }
+  }, []);
+
+  async function SaveIncome() {
     const byRegistered = await AsyncStorage.getItem('@UserData:id');
 
     const response = await api.post('/receita', {
@@ -53,6 +71,52 @@ export default function RegisterIncomes({ navigation }) {
       },
     ]);
   }
+  async function UpdateIncome(idIncome) {
+    const response = await api.put(`/receitaupdate/${idIncome}`, {
+      name: nameIncome,
+      value,
+      category: optionCategory,
+    });
+    console.log(response.data);
+    if (!response.data) {
+      return Alert.alert(
+        'OPPS!',
+        'Houve um empecilho ao atualizar sua Receita, confira sua conexão e tente novamente!  :)',
+        [
+          {
+            text: 'OK',
+          },
+        ]
+      );
+    }
+    console.log(response.data);
+    Alert.alert('SUCESS!', 'A Receita foi atualizada com sucesso!', [
+      {
+        text: 'OK',
+      },
+    ]);
+    navigation.navigate('Main', { newRegisterAlteration: response.data });
+  }
+
+  async function DeleteIncome(idIncome) {
+    console.log(idIncome);
+    const response = await api.delete(`/receitadestroy/${idIncome}`);
+    console.log(response.data);
+    if (response.data.error) {
+      return Alert.alert('OPPS!', response.data.error, [
+        {
+          text: 'OK',
+        },
+      ]);
+    }
+    console.log(response.data);
+    Alert.alert('SUCESS!', 'A Receita foi excluída com sucesso!', [
+      {
+        text: 'OK',
+      },
+    ]);
+    navigation.navigate('Main', { newRegisterAlteration: response.data });
+  }
 
   return (
     <ScrollView>
@@ -76,9 +140,7 @@ export default function RegisterIncomes({ navigation }) {
           autoCorrect={false}
           keyboardType="numeric"
           value={value}
-          onChangeText={(text, rawText) => {
-            setValue(rawText);
-          }}
+          onChangeText={(text, rawText) => setValue(rawText)}
           includeRawValueInChangeText={true}
         />
 
@@ -121,16 +183,28 @@ export default function RegisterIncomes({ navigation }) {
               />
             </Right>
           </ListItem>
-
-          <TouchableOpacity
-            title="Salvar"
-            style={styles.button}
-            onPress={() => {
-              saveIncome();
-            }}
-          >
-            <ButtonText>Salvar</ButtonText>
-          </TouchableOpacity>
+          <Buttons>
+            {!showBtnDelete ? null : (
+              <TouchableOpacity
+                title="Excluir"
+                style={styles.buttonDelete}
+                onPress={() => {
+                  DeleteIncome(idIncome);
+                }}
+              >
+                <ButtonText>Excluir</ButtonText>
+              </TouchableOpacity>
+            )}
+            <TouchableOpacity
+              title="Salvar"
+              style={styles.buttonSave}
+              onPress={() => {
+                showBtnDelete ? UpdateIncome(idIncome) : SaveIncome();
+              }}
+            >
+              <ButtonText>Salvar</ButtonText>
+            </TouchableOpacity>
+          </Buttons>
         </View>
       </View>
     </ScrollView>
@@ -167,7 +241,18 @@ const styles = StyleSheet.create({
     marginTop: 42,
     marginBottom: 18,
   },
-  button: {
+  buttonDelete: {
+    backgroundColor: '#f00',
+    width: 100,
+    height: 37,
+    marginTop: 35,
+    borderRadius: 25,
+    textAlign: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginRight: 25,
+  },
+  buttonSave: {
     backgroundColor: '#333',
     width: 100,
     height: 37,
@@ -176,6 +261,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+    marginLeft: 25,
   },
 });
 
@@ -186,4 +272,10 @@ const ButtonText = styled.Text`
   margin-top: 7px;
   text-align: center;
   justify-content: center;
+`;
+const Buttons = styled.View`
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  margin-top: 35px;
 `;
