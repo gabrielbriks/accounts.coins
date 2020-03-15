@@ -27,8 +27,7 @@ export default function RegisterExpenses({ navigation }) {
   useEffect(() => {
     if (navigation.state.params) {
       const { _id, name, value, category } = navigation.state.params.expense;
-      // console.log(navigation.state.params.delete);
-      // console.log(navigation.state.params.expense);
+
       let wasDelete = navigation.state.params.delete;
       console.log(wasDelete);
       setShowBtnDelete(wasDelete);
@@ -128,12 +127,6 @@ export default function RegisterExpenses({ navigation }) {
           navigation.navigate('Main', { newRegisterAlteration: response.data }),
       },
     ]);
-
-    // return Alert.alert('deletar', 'apertou o Excluir', [
-    //   {
-    //     text: 'OK',
-    //   },
-    // ]);
   }
 
   return (
