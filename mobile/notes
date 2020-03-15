@@ -85,8 +85,29 @@ Comands de algumas Dependencias:
  os packages com npm, e instale eles com o yarn:
     - yarn add prettier eslint-config-prettier eslint-plugin-prettier babel-eslint -D
 
-
+------------------------------------------------------------------------------------------
 
 Inssue #1 : 
     - Erro ao atualizar saldos dos cards da page Home;
         Date Resolution: 06-03-2020
+------------------------------------------------------------------------------------------
+
+    CHECK-LIST IMPLEMENTAÇÕES / AJUSTES
+
+- Impossibilitar o cadastro de registros nulos; 
+- Adicionar melhoria na forma que é exibido e manuseado os valores em todo o app;
+- Implementar possibilidade de se cadastrar;
+- Implementar recuperação de senha;
+- Implementar sinal de carregamento dos valores dos cards receita e despesa da page Main;
+- Implementar relatório e/ou visualização de receitas e despesas de meses anteriores;
+- Implementar melhoria na autenticação e na experiencia do login do usuário;
+
+- Deixar o button de opções para adicionar da page Main com sua localização e comportamento
+ mais dinâmicos;
+- Implementar tela de perfil do usuário(Visualizar/Alterar informações);
+
+
+
+
+
+
