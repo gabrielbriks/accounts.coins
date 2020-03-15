@@ -21,8 +21,6 @@ module.exports = {
     return res.json(despesas);
   },
 
-  // Buscar : show
-
   // Cadastro : strore
   async store(req, res) {
     const despesa = await DespesaSchema.create(req.body);
