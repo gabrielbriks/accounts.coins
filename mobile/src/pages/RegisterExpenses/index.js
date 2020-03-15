@@ -75,10 +75,7 @@ export default function RegisterExpenses({ navigation }) {
   }
 
   async function updateExpense(id) {
-    const response = await api.put('/despesaupdate', {
-      params: {
-        id,
-      },
+    const response = await api.put(`/despesaupdate/${id}`, {
       name: nameExpense,
       value,
       category: optionCategory,
