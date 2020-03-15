@@ -61,7 +61,7 @@ module.exports = {
 
   //Destroy
   async destroy(req, res) {
-    const receita = await ReceitasSchema.findByIdAndDelete(req.query.id);
+    const receita = await ReceitasSchema.findByIdAndDelete(req.params.id);
     if (!receita)
       return res.send({
         error:
