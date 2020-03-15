@@ -41,7 +41,7 @@ export default function RegisterExpenses({ navigation }) {
     }
   }, [navigation.state.params]);
 
-  async function saveExpense() {
+  async function SaveExpense() {
     const byRegistered = await AsyncStorage.getItem('@UserData:id');
 
     const response = await api.post('/despesa', {
@@ -74,7 +74,7 @@ export default function RegisterExpenses({ navigation }) {
     ]);
   }
 
-  async function updateExpense(id) {
+  async function UpdateExpense(id) {
     const response = await api.put(`/despesaupdate/${id}`, {
       name: nameExpense,
       value,
@@ -241,7 +241,7 @@ export default function RegisterExpenses({ navigation }) {
             title="Salvar"
             style={styles.button}
             onPress={() => {
-              showBtnDelete ? updateExpense(idExpense) : saveExpense();
+              showBtnDelete ? UpdateExpense(idExpense) : SaveExpense();
             }}
           >
             <ButtonText>Salvar</ButtonText>
