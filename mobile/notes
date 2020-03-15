@@ -94,7 +94,7 @@ Inssue #1 :
 
     CHECK-LIST IMPLEMENTAÇÕES / AJUSTES
 
-- Impossibilitar o cadastro de registros nulos; 
+#Closed/ - Impossibilitar o cadastro de registros nulos; 
 - Adicionar melhoria na forma que é exibido e manuseado os valores em todo o app;
 - Implementar possibilidade de se cadastrar;
 - Implementar recuperação de senha;
