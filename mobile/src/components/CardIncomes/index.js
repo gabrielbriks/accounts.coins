@@ -23,7 +23,6 @@ export default function CardIncomes(prop) {
   useEffect(() => {
     /*  Saldo Receitas */
     async function IncomesBalance() {
-      console.log('entrei CArd Incomes');
       const idUser = await AsyncStorage.getItem('@UserData:id');
 
       const response = await api.get('/saldoreceitas', {
@@ -33,7 +32,7 @@ export default function CardIncomes(prop) {
       });
       const { _id, saldo } = response.data[0];
       const saldoChecked = await checkBalance(saldo);
-      console.log(saldoChecked.toFixed(2).replace('.', ','));
+      // console.log(saldoChecked.toFixed(2).replace('.', ','));
       setBalance(saldoChecked.toFixed(2).replace('.', ','));
     }
     IncomesBalance();
