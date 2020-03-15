@@ -216,29 +216,30 @@ export default function RegisterExpenses({ navigation }) {
               />
             </Right>
           </ListItem>
+          <Buttons>
+            {!showBtnDelete ? null : (
+              <TouchableOpacity
+                title="Excluir"
+                style={styles.buttonDelete}
+                onPress={() => {
+                  deleteExpense(idExpense);
+                }}
+                // disabled={!showBtnDelete}
+              >
+                <ButtonText>Excluir</ButtonText>
+              </TouchableOpacity>
+            )}
 
-          {!showBtnDelete ? null : (
             <TouchableOpacity
-              title="Excluir"
-              style={styles.buttonDelete}
+              title="Salvar"
+              style={styles.buttonSave}
               onPress={() => {
-                deleteExpense(idExpense);
+                showBtnDelete ? UpdateExpense(idExpense) : SaveExpense();
               }}
-              // disabled={!showBtnDelete}
             >
-              <ButtonText>Excluir</ButtonText>
+              <ButtonText>Salvar</ButtonText>
             </TouchableOpacity>
-          )}
-
-          <TouchableOpacity
-            title="Salvar"
-            style={styles.button}
-            onPress={() => {
-              showBtnDelete ? UpdateExpense(idExpense) : SaveExpense();
-            }}
-          >
-            <ButtonText>Salvar</ButtonText>
-          </TouchableOpacity>
+          </Buttons>
         </View>
       </View>
     </ScrollView>
@@ -276,7 +277,7 @@ const styles = StyleSheet.create({
     marginTop: 42,
     marginBottom: 18,
   },
-  button: {
+  buttonSave: {
     backgroundColor: '#333',
     width: 100,
     height: 37,
@@ -285,6 +286,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+    marginLeft: 25,
   },
   buttonDelete: {
     backgroundColor: '#f00',
@@ -295,6 +297,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+    marginRight: 25,
   },
   labelsOptionCategory: {
     fontSize: 14,
@@ -311,4 +314,10 @@ const ButtonText = styled.Text`
   margin-top: 7px;
   text-align: center;
   justify-content: center;
+`;
+const Buttons = styled.View`
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  margin-top: 35px;
 `;
