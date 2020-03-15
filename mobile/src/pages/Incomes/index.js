@@ -67,14 +67,14 @@ export default function Incomes({ navigation }) {
           >
             <CardContainer>
               <ContainerTitle>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   style={styles.icons}
                   onPress={() => {
                     DeleteIncome(income._id);
                   }}
                 >
                   <Icon name="delete" size={38} color="#ce001d" />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <CardTitle>{income.name}</CardTitle>
               </ContainerTitle>
               {/* <CardValue>R$ {income.value}</CardValue> */}
