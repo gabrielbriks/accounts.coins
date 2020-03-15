@@ -52,16 +52,19 @@ module.exports = {
         com os dados atualizados caso ao contrario, se nao dissermos isso ele irá trazer 
         o retorno com os dados antigos
     */
+
     const despesa = await DespesaSchema.findByIdAndUpdate(
-      req.query.id,
+      req.params.id,
       req.body,
       { new: true }
     );
     return res.json(despesa);
   },
+
   // Excluir : destroy
   async destroy(req, res) {
-    const despesa = await DespesaSchema.findByIdAndDelete(req.query.id);
+    const despesa = await DespesaSchema.findByIdAndDelete(req.params.id);
+    console.log(despesa);
     if (!despesa)
       return res.send({
         error:
