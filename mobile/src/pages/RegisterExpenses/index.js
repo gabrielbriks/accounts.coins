@@ -75,24 +75,15 @@ export default function RegisterExpenses({ navigation }) {
   }
 
   async function updateExpense(id) {
-    // return Alert.alert('SUCESSO', 'Registro salvo com sucesso!', [
-    //   {
-    //     text: 'OK',
-    //     onPress: () => navigation.navigate('Main'),
-    //   },
-    // ]);
-    console.log(showBtnDelete);
-    console.log(id);
-    const response = await api.post('/despesaupdate', {
+    const response = await api.put('/despesaupdate', {
       params: {
         id,
       },
       name: nameExpense,
       value,
       category: optionCategory,
-      //byRegistered,
     });
-    // console.log(response);
+
     if (!response.data) {
       return Alert.alert(
         'OPPS!',
@@ -107,7 +98,7 @@ export default function RegisterExpenses({ navigation }) {
     setNameExpense('');
     setValue('');
 
-    Alert.alert('SUCESSO', 'Registro salvo com sucesso!', [
+    Alert.alert('SUCESSO', 'Registro excluído com sucesso!', [
       {
         text: 'OK',
         onPress: () =>
@@ -117,22 +108,17 @@ export default function RegisterExpenses({ navigation }) {
   }
 
   async function deleteExpense(id) {
-    const response = api.delete('/receitadestroy', {
-      params: {
-        id,
-      },
+    console.log(id);
+    const response = await api.delete(`/despesadestroy/${id}`, {
+      id,
     });
-
-    if (!response.data) {
-      return Alert.alert(
-        'OPPS!',
-        'Houve um empecilho ao excluir sua Despesa, confira sua conexão e tente novamente!  :)',
-        [
-          {
-            text: 'OK',
-          },
-        ]
-      );
+    console.log(response.data);
+    if (response.data.error) {
+      return Alert.alert('OPPS!', response.data.error + '   :)', [
+        {
+          text: 'OK',
+        },
+      ]);
     }
 
     setNameExpense('');
@@ -246,7 +232,7 @@ export default function RegisterExpenses({ navigation }) {
               title="Excluir"
               style={styles.buttonDelete}
               onPress={() => {
-                deleteExpense();
+                deleteExpense(idExpense);
               }}
               // disabled={!showBtnDelete}
             >
