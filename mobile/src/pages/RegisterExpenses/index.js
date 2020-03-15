@@ -43,6 +43,18 @@ export default function RegisterExpenses({ navigation }) {
   async function SaveExpense() {
     const byRegistered = await AsyncStorage.getItem('@UserData:id');
 
+    if (!nameExpense != null && !optionCategory != null && !value > 0) {
+      return Alert.alert(
+        'OPPS!',
+        'Preencha todos os campos com informações validas!  ;)',
+        [
+          {
+            text: 'OK',
+          },
+        ]
+      );
+    }
+
     const response = await api.post('/despesa', {
       name: nameExpense,
       value,
@@ -74,6 +86,18 @@ export default function RegisterExpenses({ navigation }) {
   }
 
   async function UpdateExpense(id) {
+    if (!nameExpense != null && !optionCategory != null && !value > 0) {
+      return Alert.alert(
+        'OPPS!',
+        'Preencha todos os campos com informações validas!  ;)',
+        [
+          {
+            text: 'OK',
+          },
+        ]
+      );
+    }
+
     const response = await api.put(`/despesaupdate/${id}`, {
       name: nameExpense,
       value,

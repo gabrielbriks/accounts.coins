@@ -42,6 +42,18 @@ export default function RegisterIncomes({ navigation }) {
   async function SaveIncome() {
     const byRegistered = await AsyncStorage.getItem('@UserData:id');
 
+    if (!nameIncome != null && !optionCategory != null && !value > 0) {
+      return Alert.alert(
+        'OPPS!',
+        'Preencha todos os campos com informações validas!  ;)',
+        [
+          {
+            text: 'OK',
+          },
+        ]
+      );
+    }
+
     const response = await api.post('/receita', {
       name: nameIncome,
       value,
@@ -72,6 +84,18 @@ export default function RegisterIncomes({ navigation }) {
     ]);
   }
   async function UpdateIncome(idIncome) {
+    if (!nameIncome != null && !optionCategory != null && !value > 0) {
+      return Alert.alert(
+        'OPPS!',
+        'Preencha todos os campos com informações validas!  ;)',
+        [
+          {
+            text: 'OK',
+          },
+        ]
+      );
+    }
+
     const response = await api.put(`/receitaupdate/${idIncome}`, {
       name: nameIncome,
       value,
