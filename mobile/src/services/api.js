@@ -4,7 +4,7 @@ import axios from 'axios';
     Dev: 'http://192.168.1.4:3001'
 */
 const api = axios.create({
-  baseURL: 'https://backend-accounts.herokuapp.com',
+  baseURL: 'http://192.168.1.4:3001',
 });
 
 export default api;

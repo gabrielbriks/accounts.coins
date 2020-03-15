@@ -45,11 +45,7 @@ export default function Incomes({ navigation }) {
 
   async function DeleteIncome(idIncome) {
     console.log(idIncome);
-    const response = await api.delete('/receitadestroy', {
-      params: {
-        id: idIncome,
-      },
-    });
+    const response = await api.delete(`/receitadestroy/${idIncome}`);
 
     if (response.data.error) {
       return Alert.alert('OPPS!', response.data.error, [
