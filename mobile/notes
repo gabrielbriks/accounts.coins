@@ -102,9 +102,13 @@ Inssue #1 :
 - Implementar relatório e/ou visualização de receitas e despesas de meses anteriores;
 - Implementar melhoria na autenticação e na experiencia do login do usuário;
 
-- Deixar o button de opções para adicionar da page Main com sua localização e comportamento
- mais dinâmicos;
-- Implementar tela de perfil do usuário(Visualizar/Alterar informações);
+- Adicionar melhoria no comportamento e na forma de apresentar o botão de opções para adicionar
+ da page Main.(Deixa-lo mais dinâmico, de forma mais nativa(idependente do tam. da tela). 
+ Conforme o app "GuiaBolso e/ou Mobills");
+
+- Implementar tela de perfil do usuário(Visualizar/Alterar informações, exibir informações do 
+ app(page "about"));
+
 
 
 
