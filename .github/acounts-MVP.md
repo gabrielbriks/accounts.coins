@@ -8,7 +8,6 @@
 -
   * Despesas;
   * Receitas;
-  * Tipos de Despesas ( pensando . . . );
 
   **Regras Funcionais:**
   -
@@ -17,19 +16,19 @@
    * O usuario poderá visualizar o valor total da receita;
    * O usuário poderá visualizar o valor total do saldo;
         
-          Saldo = ( TotalReceitas - TotalDepesas );
+          Saldos = ( TotalReceitas - TotalDepesas );
       
 
 **Regras Não Funcionais**
 -
   * Utilizar o Mongodb
   * Utilizar Express
-  * Utilizar ReactJS/Native
+  * Utilizar React Native
     
 
 **Regras de Negócios**
 -
-  * Não deve permitir cadastrar despesa(gastos) sem uma Receita(renda)
+  * //Permitido: Não deve permitir cadastrar despesa(gastos) sem uma Receita(renda)
   * 
 
 **Futuras Features**
