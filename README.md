@@ -14,7 +14,7 @@
 
  <!-- Few lines describing your project. -->
 
-<p align="center"> Um simples app para registrar nossos gastos do dia a dia
+<p align="center"> *Um simples app para registrar nossos gastos do dia a dia*
     <br> 
 </p>
 
@@ -50,7 +50,7 @@ Add additional notes about how to deploy this on a live system. -->
 - [Express](https://expressjs.com/) - Server Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
 
-- Para visualizar o repositório do backend basta clicar [aqui](https://err_name_not_resolved/).
+- Para visualizar o repositório do backend basta clicar [aqui]([https://err_name_not_resolved/](https://github.com/gabrielbriks/accounts.coins/tree/deploy/backend)).
 
 ## ✍️ Autor <a name = "authors"></a>
 
