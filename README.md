@@ -29,7 +29,7 @@
  
  Como objetivo viso trazer a possibilidade de registrar os nossos gastos do dia a dia de uma forma simples, para que venhamos conseguir visualizar todo o ciclo de gastos mensais, pois não há nada tão terrível do que chegar ao fim do mês sempre no vermelho.
 
-## 🎈 Usage <a name="usage"></a>
+## 🎈 Como usar <a name="usage"></a>
 
 Para conferir o app em seu smartphone basta clicar [aqui](https://expo.io/artifacts/256c4a29-252b-460c-a155-51cf175af4d3) e realizar o download, por ainda estarmos em 
 versão alpha não o disponibilizamos em nenhuma loja de aplicativos.
