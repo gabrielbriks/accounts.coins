@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   AsyncStorage,
+  Alert,
 } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import { TextInputMask } from 'react-native-masked-text';
@@ -20,9 +21,39 @@ export default function RegisterExpenses({ navigation }) {
   const [nameExpense, setNameExpense] = useState('');
   const [value, setValue] = useState('');
   const [optionCategory, setOptioncategory] = useState('');
+  const [showBtnDelete, setShowBtnDelete] = useState('');
+  const [idExpense, setIdExpense] = useState('');
 
-  async function saveExpense() {
+  useEffect(() => {
+    if (navigation.state.params) {
+      const { _id, name, value, category } = navigation.state.params.expense;
+
+      let wasDelete = navigation.state.params.delete;
+      console.log(wasDelete);
+      setShowBtnDelete(wasDelete);
+      setIdExpense(_id);
+      setNameExpense(name);
+      setValue(value);
+      setOptioncategory(category);
+
+      console.log(showBtnDelete);
+    }
+  }, [navigation.state.params]);
+
+  async function SaveExpense() {
     const byRegistered = await AsyncStorage.getItem('@UserData:id');
+
+    if (!nameExpense != null && !optionCategory != null && !value > 0) {
+      return Alert.alert(
+        'OPPS!',
+        'Preencha todos os campos com informações validas!  ;)',
+        [
+          {
+            text: 'OK',
+          },
+        ]
+      );
+    }
 
     const response = await api.post('/despesa', {
       name: nameExpense,
@@ -44,15 +75,82 @@ export default function RegisterExpenses({ navigation }) {
     }
     setNameExpense('');
     setValue('');
+
     Alert.alert('SUCESSO', 'Registro salvo com sucesso!', [
       {
         text: 'OK',
         onPress: () =>
-          navigation.navigate('Main', { newRegister: response.data }),
+          navigation.navigate('Main', { newRegisterAlteration: response.data }),
       },
     ]);
-    // alert('Salvo com Sucesso');
-    // navigation.navigate('Main', { newRegister: response.data });
+  }
+
+  async function UpdateExpense(id) {
+    if (!nameExpense != null && !optionCategory != null && !value > 0) {
+      return Alert.alert(
+        'OPPS!',
+        'Preencha todos os campos com informações validas!  ;)',
+        [
+          {
+            text: 'OK',
+          },
+        ]
+      );
+    }
+
+    const response = await api.put(`/despesaupdate/${id}`, {
+      name: nameExpense,
+      value,
+      category: optionCategory,
+    });
+
+    if (!response.data) {
+      return Alert.alert(
+        'OPPS!',
+        'Houve um empecilho ao salvar sua Despesa, confira sua conexão e tente novamente!  :)',
+        [
+          {
+            text: 'OK',
+          },
+        ]
+      );
+    }
+    setNameExpense('');
+    setValue('');
+
+    Alert.alert('SUCESSO', 'Registro excluído com sucesso!', [
+      {
+        text: 'OK',
+        onPress: () =>
+          navigation.navigate('Main', { newRegisterAlteration: response.data }),
+      },
+    ]);
+  }
+
+  async function deleteExpense(id) {
+    console.log(id);
+    const response = await api.delete(`/despesadestroy/${id}`, {
+      id,
+    });
+    console.log(response.data);
+    if (response.data.error) {
+      return Alert.alert('OPPS!', response.data.error + '   :)', [
+        {
+          text: 'OK',
+        },
+      ]);
+    }
+
+    setNameExpense('');
+    setValue('');
+
+    Alert.alert('SUCESSO', 'Registro salvo com sucesso!', [
+      {
+        text: 'OK',
+        onPress: () =>
+          navigation.navigate('Main', { newRegisterAlteration: response.data }),
+      },
+    ]);
   }
 
   return (
@@ -142,16 +240,30 @@ export default function RegisterExpenses({ navigation }) {
               />
             </Right>
           </ListItem>
+          <Buttons>
+            {!showBtnDelete ? null : (
+              <TouchableOpacity
+                title="Excluir"
+                style={styles.buttonDelete}
+                onPress={() => {
+                  deleteExpense(idExpense);
+                }}
+                // disabled={!showBtnDelete}
+              >
+                <ButtonText>Excluir</ButtonText>
+              </TouchableOpacity>
+            )}
 
-          <TouchableOpacity
-            title="Salvar"
-            style={styles.button}
-            onPress={() => {
-              saveExpense();
-            }}
-          >
-            <ButtonText>Salvar</ButtonText>
-          </TouchableOpacity>
+            <TouchableOpacity
+              title="Salvar"
+              style={styles.buttonSave}
+              onPress={() => {
+                showBtnDelete ? UpdateExpense(idExpense) : SaveExpense();
+              }}
+            >
+              <ButtonText>Salvar</ButtonText>
+            </TouchableOpacity>
+          </Buttons>
         </View>
       </View>
     </ScrollView>
@@ -189,7 +301,7 @@ const styles = StyleSheet.create({
     marginTop: 42,
     marginBottom: 18,
   },
-  button: {
+  buttonSave: {
     backgroundColor: '#333',
     width: 100,
     height: 37,
@@ -198,6 +310,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+    marginLeft: 25,
+  },
+  buttonDelete: {
+    backgroundColor: '#f00',
+    width: 100,
+    height: 37,
+    marginTop: 35,
+    borderRadius: 25,
+    textAlign: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginRight: 25,
   },
   labelsOptionCategory: {
     fontSize: 14,
@@ -214,4 +338,10 @@ const ButtonText = styled.Text`
   margin-top: 7px;
   text-align: center;
   justify-content: center;
+`;
+const Buttons = styled.View`
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  margin-top: 35px;
 `;

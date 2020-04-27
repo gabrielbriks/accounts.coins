@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import styled from 'styled-components';
 import { TextMask } from 'react-native-masked-text';
+import NumberFormat from 'react-number-format';
 
 import api from '../../services/api';
+import checkBalance from '../../utils/checkBalances';
 import {
   Container,
   Card,
@@ -15,7 +17,7 @@ import {
 } from './styles';
 
 export default function CardIncomes(prop) {
-  const { newRegister } = prop;
+  const { newRegisterAlteration } = prop;
   const [balance, setBalance] = useState(0);
 
   useEffect(() => {
@@ -29,10 +31,12 @@ export default function CardIncomes(prop) {
         },
       });
       const { _id, saldo } = response.data[0];
-      setBalance(saldo);
+      const saldoChecked = await checkBalance(saldo);
+      // console.log(saldoChecked.toFixed(2).replace('.', ','));
+      setBalance(saldoChecked.toFixed(2).replace('.', ','));
     }
     IncomesBalance();
-  }, [newRegister]);
+  }, [newRegisterAlteration]);
 
   return (
     <>
@@ -44,8 +48,14 @@ export default function CardIncomes(prop) {
           <Line />
           <CardContent>
             <Title>Saldo Receitas</Title>
-            <TextMask type="money" value={balance} style={styles.saldos} />
-            {/* <Description>R$ {balance}</Description> */}
+            {/* <TextMask type="money" value={balance} style={styles.saldos} /> */}
+            {/* <NumberFormat
+              value={balance}
+              displayType={'text'}
+              prefix={'R$'}
+              renderText={value => <Text style={styles.saldos}>{value}</Text>}
+            /> */}
+            <Text style={styles.saldos}>R${balance}</Text>
           </CardContent>
         </Card>
       </Container>
