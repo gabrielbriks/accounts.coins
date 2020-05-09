@@ -45,7 +45,13 @@ export default function CardExpenses(prop) {
           <Line />
           <CardContent>
             <CardContentTitle>Saldo Despesas</CardContentTitle>
-            <TextMask type="money" value={balance} style={styles.saldos} />
+            <Text style={styles.saldos}>
+              {Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(balance)}
+            </Text>
+            {/* <TextMask type="money" value={balance} style={styles.saldos} /> */}
           </CardContent>
         </Card>
       </Container>

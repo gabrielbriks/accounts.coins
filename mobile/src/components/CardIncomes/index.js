@@ -33,7 +33,8 @@ export default function CardIncomes(prop) {
       const { _id, saldo } = response.data[0];
       const saldoChecked = await checkBalance(saldo);
       // console.log(saldoChecked.toFixed(2).replace('.', ','));
-      setBalance(saldoChecked.toFixed(2).replace('.', ','));
+      //setBalance(saldoChecked.toFixed(2).replace('.', ','));
+      setBalance(saldoChecked)
     }
     IncomesBalance();
   }, [newRegisterAlteration]);
@@ -55,7 +56,12 @@ export default function CardIncomes(prop) {
               prefix={'R$'}
               renderText={value => <Text style={styles.saldos}>{value}</Text>}
             /> */}
-            <Text style={styles.saldos}>R${balance}</Text>
+            <Text style={styles.saldos}>
+              {Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(balance)}  
+            </Text>
           </CardContent>
         </Card>
       </Container>
