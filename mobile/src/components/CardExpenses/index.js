@@ -51,7 +51,6 @@ export default function CardExpenses(prop) {
                   currency: 'BRL',
                 }).format(balance)}
             </Text>
-            {/* <TextMask type="money" value={balance} style={styles.saldos} /> */}
           </CardContent>
         </Card>
       </Container>
