@@ -31,7 +31,7 @@
 
 ## 🎈 Como usar <a name="usage"></a>
 
-Para conferir o app em seu smartphone basta clicar [aqui](https://expo.io/artifacts/256c4a29-252b-460c-a155-51cf175af4d3) e realizar o download, por ainda estarmos em 
+Para conferir o app em seu smartphone basta clicar [aqui](ttps://expo.io/artifacts/5739e0a5-f867-4a20-b3b2-191221235696) e realizar o download, por ainda estarmos em 
 versão alpha não o disponibilizamos em nenhuma loja de aplicativos.
 
 

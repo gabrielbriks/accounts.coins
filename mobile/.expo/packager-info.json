@@ -1,10 +1,10 @@
 {
-  "expoServerNgrokUrl": "https://k2-twd.anonymous.mobile.exp.direct",
-  "packagerNgrokUrl": "https://packager.k2-twd.anonymous.mobile.exp.direct",
-  "ngrokPid": 8117,
+  "expoServerNgrokUrl": "https://k2-twd.gabriel-morais.mobile.exp.direct",
+  "packagerNgrokUrl": "https://packager.k2-twd.gabriel-morais.mobile.exp.direct",
+  "ngrokPid": 7861,
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 8090,
+  "packagerPid": 7828,
   "webpackServerPort": null
 }
