@@ -1,3 +1,4 @@
+
 <p align="center">
   <a href="" rel="noopener">
  <img width=200px height=200px src="./mobile/assets/icon.png" alt="Project logo"></a>
@@ -31,8 +32,12 @@
 
 ## 🎈 Como usar <a name="usage"></a>
 
-Para conferir o app em seu smartphone basta clicar [aqui](https://expo.io/artifacts/256c4a29-252b-460c-a155-51cf175af4d3) e realizar o download, por ainda estarmos em 
-versão alpha não o disponibilizamos em nenhuma loja de aplicativos.
+Se caso ficou interessado em testar o app em seu smartphone para nos dar um feedback basta clicar [aqui](https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40gabriel.morais/accounts-coins-926eb4e2fb344cce90572effbb82cd08-signed.apk) e realizar o download.
+ 
+ Por ainda estarmos em versão alpha ainda não é possível realizar o cadastro do seu login, para isso deve me mandar um email solicitando um usuário de acesso.
+Email: greis9010@gmail.com
+
+
 
 
 <!-- ## 🚀 Deployment <a name = "deployment"></a>
@@ -54,7 +59,7 @@ Add additional notes about how to deploy this on a live system. -->
 
 ## ✍️ Autor <a name = "authors"></a>
 
-- [@GabrielBriks](https://github.com/gabrielbriks) - Ideia & trabalho inicial
+ [@GabrielBriks](https://github.com/gabrielbriks) - Ideia & trabalho inicial
 
 
 
