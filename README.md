@@ -57,10 +57,14 @@ Add additional notes about how to deploy this on a live system. -->
 
 - Para visualizar o repositório do backend basta clicar [aqui](https://github.com/gabrielbriks/accounts.coins/tree/deploy/backend) .
 
-## ✍️ Autor <a name = "authors"></a>
+<br/>
+---
+<p align="center">gabrielbriks ❤ Accounts & Coins 💰</p>
 
- [@GabrielBriks](https://github.com/gabrielbriks) - Ideia & trabalho inicial
+<!-- ## ✍️ Autor <a name = "authors"></a>
 
+<p align="center"> 
+</p>
 
 
 <!-- ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
