@@ -35,6 +35,7 @@
 Se caso ficou interessado em testar o app em seu smartphone para nos dar um feedback basta clicar [aqui](https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40gabriel.morais/accounts-coins-926eb4e2fb344cce90572effbb82cd08-signed.apk) e realizar o download.
  
  Por ainda estarmos em versão alpha ainda não é possível realizar o cadastro do seu login, para isso deve me mandar um email solicitando um usuário de acesso.
+ 
 Email: greis9010@gmail.com
 
 
