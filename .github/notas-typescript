@@ -1,0 +1,19 @@
+# Inclusão do typescript
+
+## Instalação
+
+- Primeiro iremos instala-lo em nosso projeto com o comando a seguir: 
+  ``` code 
+    yarn add typescript -D
+  ```
+
+- Geralmente quando utilizamos o typescript precisamos expor as tipagens 
+  das bibliotecas que estamos utilizando, assim quando dermos o "CTRL+Space"
+  será exibido o autocomplete com todas os métodos, variáveis e etc.
+
+  - Para isso iremos adicionar o pacote com a tipagem se caso a biblioteca não
+    possuir ainda. Execute o comando a seguir como exemplo:
+
+    ```code 
+      yarn add @types/express
+    ``` 
