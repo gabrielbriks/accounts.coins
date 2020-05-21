@@ -17,3 +17,18 @@
     ```code 
       yarn add @types/express
     ``` 
+- Como  o node não consegue entender typescript devemos converter o código 'ts'
+  para 'js'. Para isso podemos utilizar uma ferramenta que já vem quando 
+  instalamos o typescript, que é o "tsc". 
+  
+  - Para utilizar o nosso conversor "tsc" basta executar o comando abaixo:
+    ```code 
+      yarn tsc src/index.ts
+    ```
+  - Vamos criar um arquivo de configuração do nosso tsc:
+    - Para isso primeiramente iremos criar o file com o comando abaixo:
+        ```code 
+          yarn tsc src/index.ts
+        ```
+      - Em seguida executamos apenas 'yarn tsc' para que essas configurações 
+      sejam aplicadas
