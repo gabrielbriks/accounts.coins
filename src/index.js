@@ -4,10 +4,8 @@ const mongoose = require('mongoose');
 
 const routes = require('./routes');
 require('dotenv/config');
-/* Que tal utilizar o 'require-dir' >> import requireDir require 'require-dir' ; Install ! */ 
 
 
-//require('dotenv').config() Ainda não esta em uso 
 const app = express();
 
 
