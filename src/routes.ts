@@ -1,5 +1,5 @@
-import express from "express";
-var routes = express.Router();
+import Router from "express";
+var routes = Router();
 import UserController from "./controllers/UserController";
 import DespesasController from "./controllers/DespesasController";
 import ReceitasController from "./controllers/ReceitasController";
