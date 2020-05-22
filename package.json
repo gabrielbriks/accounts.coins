@@ -7,7 +7,6 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "dev:server":"ts-node-dev --respawn --transpileOnly src/index.ts",
     "start": "node src/index.js"
   },
   "dependencies": {
@@ -35,7 +34,6 @@
     "eslint-plugin-standard": "^4.0.1",
     "nodemon": "^2.0.2",
     "prettier": "^2.0.5",
-    "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.9.3"
   }
 }
