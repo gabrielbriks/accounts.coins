@@ -31,4 +31,37 @@
           yarn tsc src/index.ts
         ```
       - Em seguida executamos apenas 'yarn tsc' para que essas configurações 
-      sejam aplicadas
+      sejam aplicadas e também para que seja realizar a transpilação de todo o 
+      código.
+
+
+### Implementando fluxo de desenvolvimento
+
+- O nosso fluxo de desenvolvimento servirá para deixarmos automatizado a maneira
+  que estamos transpilando o nosso código em ambiente de desenvolvimento, pois 
+  dessa maneira inicial ficará muito massante ficar toda hora realizar comando para
+  transpilar projeto para javascript. 
+
+  - Então iremos utilizar a seguinte aboradagem para construir esse fluxo:
+    - Para construção do ambiente estaremos utilizando uma feerramenta chamada
+      ts-node-dev, ele estará funcionando da mesma forma que o próprio sucrase
+      que já conhecemos.
+    
+    - Execute o comando a seguir para instalar o 'ts-node-dev'
+      ```code
+        yarn add ts-node-dev -D
+      ```
+    - Agora utilizaremos o próprio 'ts-node-dev' para executar os nossos códigos.
+    Bastamos então adicionarmos uma aba "scripts" e lá incluir o seguinte script a
+    seguir: 
+    
+      ```json
+        {
+          "script": {
+            "dev:server":"ts-node-dev --respawn --transpileOnly src/index.ts"
+          }
+        }
+      ```
+      - transpileOnly: Esse cara diz que o meu código 'ts' nao precisa está certo
+        para ser transpilado para 'js'. No caso nao quero que ele verifique isso.
+      - 
