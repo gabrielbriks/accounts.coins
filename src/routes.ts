@@ -1,4 +1,4 @@
-import Router from "express";
+import { Router } from "express";
 var routes = Router();
 import UserController from "./controllers/UserController";
 import DespesasController from "./controllers/DespesasController";
