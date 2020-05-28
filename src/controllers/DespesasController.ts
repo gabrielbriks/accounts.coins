@@ -1,4 +1,4 @@
-//import { Request, Response } from "express";
+import { Request, Response } from "express";
 // import mongoose from "mongoose";
 import moment from "moment";
 import DespesaSchema from "../models/Despesa";
@@ -13,8 +13,8 @@ export default {
 
     const despesas = await DespesaSchema.find({
       createAt: {
-        $gte: Date.parse(currentMonth._d),
-        $lt: Date.parse(endMonth._d)
+        $gte: Date.parse(currentMonth.toString()),
+        $lt: Date.parse(endMonth.toString())
       }
     }).sort({
       createAt: "descending"
@@ -38,8 +38,8 @@ export default {
     const despesas = await DespesaSchema.find({
       byRegistered: user._id,
       createAt: {
-        $gte: currentMonth._d,
-        $lt: endMonth._d
+        $gte: currentMonth.day(),
+        $lt: endMonth.day()
       }
     }).sort({
       createAt: "descending"
@@ -51,8 +51,8 @@ export default {
   async balanceExpensesFromUser(req:Request, res: Response) {
     let currentMonth = moment().startOf("month");
     let endMonth = moment(currentMonth).endOf("month");
-    console.log(currentMonth._d);
-    console.log(endMonth._d);
+    console.log(currentMonth.day);
+    console.log(endMonth.day());
     const user = await UserSchema.findById(req.query.idUser);
     const saldo = await DespesaSchema.aggregate([
       {
@@ -60,8 +60,8 @@ export default {
           // usamos $match para realizar uma simples igualdade.
           byRegistered: user._id,
           createAt: {
-            $gte: currentMonth._d,
-            $lte: endMonth._d
+            $gte: currentMonth.day(),
+            $lte: endMonth.day()
           }
         }
       },
