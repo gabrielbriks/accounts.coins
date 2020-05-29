@@ -4,7 +4,11 @@
         "node": true
     },
     "extends": [
-        "standard"
+        //"standard"
+        "airbnb-base",
+        "plugin:@typescript-eslint/recommended",
+        "prettier/@typescript-eslint",
+        "plugin:prittier/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -12,22 +16,44 @@
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": 11,
-        "sourceType": "module"
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "prettier"
     ],
     "rules": {
         //Definindo tudo que o prettier achar seja declarado como error
         "prettier/prettier":"error",
         //Fazendo com que não seja obrigado a utilização do this
         "class-methods-use-this": "off",
-        //Permite que eu recebe um parametro e faça alterações nele
-        "no-param-ressingn": "off",
-        //Desabilitando a obrigatoriedade de todas as vars em cammelCase
-        "camelcase": "off",
-        //Desabilitando aviso de erro para variáveis inutilizadas
-        "no-unused-vars": ["error", {"argsIgnorePattern": "next"}],
+        "no-await-in-loop": "off",
+        "import/prefer-default-export": "off",
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "ts": "never"
+            }
+        ]
+    },
+    "overrides":[
+        {
+            "files": ["*.js"],
+            "rules": {
+                "@typescript-eslint/no-var-requires": "off"
+            }
+        }
+    ],
+    "settings": {
+        "import/extensions": [".ts", ".js"],
+        "import/parsers": {
+            "@typescript-eslint/parser": [".ts", ".js"]
+        },
+        "import/resolver": {
+            "typescript": {}
+        }
     }
 }
