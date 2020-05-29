@@ -1,7 +1,9 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
+
+type Despesa = Document & {};
 
 // ## Expenses
-const DespesaSchema = new mongoose.Schema({
+const DespesaSchema = new Schema({
   name: {
     type: String,
     // trim = true,
@@ -21,10 +23,9 @@ const DespesaSchema = new mongoose.Schema({
     timezone: 'America/Sao_Paulo',
   },
   byRegistered: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'User',
   },
 });
 
-export default mongoose.model('Despesa', DespesaSchema);
-export default mongoose.model('Despesa', DespesaSchema);
+export default mongoose.model<Despesa>('Despesa', DespesaSchema);

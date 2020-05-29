@@ -1,4 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose, {Document, } from 'mongoose';
+
+type User = Document & {};
 
 const UserSchema = new mongoose.Schema({
     name:{
@@ -35,4 +37,4 @@ const UserSchema = new mongoose.Schema({
 
 });
 
-export default mongoose.model('User', UserSchema);
+export default mongoose.model<User>('User', UserSchema);

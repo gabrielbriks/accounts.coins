@@ -36,7 +36,7 @@ export default {
     const user = await UserSchema.findById(req.query.idUser);
 
     const despesas = await DespesaSchema.find({
-      byRegistered: user._id,
+      byRegistered: user?._id,
       createAt: {
         $gte: currentMonth.day(),
         $lt: endMonth.day()
@@ -58,7 +58,7 @@ export default {
       {
         $match: {
           // usamos $match para realizar uma simples igualdade.
-          byRegistered: user._id,
+          byRegistered: user?._id,
           createAt: {
             $gte: currentMonth.day(),
             $lte: endMonth.day()
@@ -67,7 +67,7 @@ export default {
       },
       {
         $group: {
-          _id: user._id,
+          _id: user?._id,
           saldo: { $sum: "$value" }
         }
       }
