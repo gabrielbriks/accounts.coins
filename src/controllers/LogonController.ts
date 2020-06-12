@@ -3,11 +3,13 @@ import Bcrypt from 'bcryptjs';
 
 import UserSchema from '../models/User';
 
+
 export default {
 
     async signin(req:Request, res:Response){
         
         const { login, password } = req.body;
+        
         
         const userLogin = await UserSchema.findOne({ login });
         

@@ -1,13 +1,13 @@
-const mongoose = require("mongoose");
-const moment = require("moment");
+import { Request, Response } from "express";
+import moment from "moment";
 
 // Incomes
-const ReceitasSchema = require("../models/Receita");
-const UserSchema = require("../models/User");
+import ReceitasSchema from "../models/Receita";
+import UserSchema from "../models/User";
 
-module.exports = {
+export default {
   //Listar Incomes
-  async index(req, res) {
+  async index(req: Request, res: Response) {
     const receitas = await ReceitasSchema.find().sort({
       createAt: "descending"
     });
@@ -15,23 +15,23 @@ module.exports = {
   },
 
   //Cadastrar Incomes
-  async store(req, res) {
+  async store(req: Request, res: Response) {
     const receita = await ReceitasSchema.create(req.body);
     return res.json(receita);
   },
 
   //Buscar receitas por usuario
-  async showReceitasFromUser(req, res) {
+  async showReceitasFromUser(req: Request, res: Response) {
     let currentMonth = moment().startOf("month");
     let endMonth = moment(currentMonth).endOf("month");
 
     const user = await UserSchema.findById(req.query.idUser);
 
     const receitas = await ReceitasSchema.find({
-      byRegistered: user.id,
+      byRegistered: user?.id,
       createAt: {
-        $gte: currentMonth._d,
-        $lt: endMonth._d
+        $gte: currentMonth.day(),
+        $lt: endMonth.day()
       }
     }).sort({
       createAt: "descending"
@@ -40,7 +40,7 @@ module.exports = {
     return res.json(receitas);
   },
 
-  async balanceIncomesFromUser(req, res) {
+  async balanceIncomesFromUser(req: Request, res: Response) {
     let currentMonth = moment().startOf("month");
     let endMonth = moment(currentMonth).endOf("month");
 
@@ -49,16 +49,16 @@ module.exports = {
       {
         $match: {
           // usamos $match para realizar uma simples igualdade.
-          byRegistered: user._id,
+          byRegistered: user?._id,
           createAt: {
-            $gte: currentMonth._d,
-            $lte: endMonth._d
+            $gte: currentMonth.day(),
+            $lt: endMonth.day()
           }
         }
       },
       {
         $group: {
-          _id: user._id,
+          _id: user?._id,
           saldo: { $sum: "$value" }
         }
       }
@@ -68,7 +68,7 @@ module.exports = {
   },
 
   //Update
-  async update(req, res) {
+  async update(req: Request, res: Response) {
     /* A propriedade "new:true", diz que ao retornar o registro alterado, deve retornar 
         com os dados atualizados caso ao contrario, se nao dissermos isso ele irá trazer 
         o retorno com os dados antigos
@@ -82,7 +82,7 @@ module.exports = {
   },
 
   //Destroy
-  async destroy(req, res) {
+  async destroy(req: Request, res: Response) {
     const receita = await ReceitasSchema.findByIdAndDelete(req.params.id);
     if (!receita)
       return res.send({
