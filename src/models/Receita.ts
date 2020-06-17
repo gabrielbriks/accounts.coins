@@ -1,4 +1,4 @@
-import mongoose, { Document, } 'mongoose';
+import mongoose, { Document, } from 'mongoose';
 
 type Receita = Document & {};
 
